@@ -7,6 +7,7 @@ import { FaFire } from "react-icons/fa6";
 import { MdOutlineGamepad } from "react-icons/md";
 import logo from '../Asset/logo.webp'
 import Section from '../Components/Section'
+import Footer from "../Components/Footer";
 
 export default function Home() {
    const { theme, toggleTheme } = useTheme()
@@ -54,11 +55,11 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-2 lg:grid-cols-6">
                      {games.map((games) => {
                         return (
-                           <div key={games.id} className="group card glass relative cursor-pointer rounded-lg hover:shadow-inner shadow-yellow-200">
+                           <div key={games.id} className="group card glass relative cursor-pointer rounded-lg h-64">
                               <img
                                  src={games.image}
                                  alt={games.title}
-                                 className="object-cover object-center w-full h-full brightness-75 rounded-md group-hover:blur-md group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
+                                 className="object-cover object-center w-full h-full brightness-75 rounded-md group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
                               />
                               <div className="flex flex-col items-center justify-center gap-5 w-full text-zinc-50 absolute inset-0 py-5 px-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 ease-in-out">
                                  <img
@@ -72,13 +73,14 @@ export default function Home() {
                                  </h1>
                               </div>
                            </div>
-
                         )
                      })}
                   </div>
                </Section>
             </div>
          </main>
+
+         <Footer />
       </Wrapper>
    )
 }

@@ -10,8 +10,13 @@ export default function Navbar({ theme, toggleTheme }) {
    return (
       <nav className={`navbar ${theme === 'light' ? 'bg-zinc-200 text-zinc-900' : 'bg-zinc-900 text-zinc-200'} z-10 sticky top-0 text-white shadow-md shadow-yellow-200`}>
          <div className="container flex justify-between items-center mx-auto p-3">
-            <div className="nav-start flex items-center gap-12">
+            <div className="nav-start flex items-center gap-7">
                <img src={logo} alt="Logo" width={150} />
+               <div className="nav-menu flex items-center gap-5 text-zinc-300 border-s-2 border-yellow-300 pl-5">
+                  <a className="hover:text-yellow-200" href="">Home</a>
+                  <a className="hover:text-yellow-200" href="">Daftar Layanan</a>
+                  <a className="hover:text-yellow-200" href="">Cek Transaksi</a>
+               </div>
             </div>
             <div className="nav-end flex items-center gap-4">
                <NavSearch />
