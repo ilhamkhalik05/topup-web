@@ -13,7 +13,7 @@ export default function Navbar({ theme, toggleTheme }) {
             <div className="nav-start flex items-center gap-12">
                <img src={logo} alt="Logo" width={150} />
             </div>
-            <div className="nav-end flex items-center gap-3">
+            <div className="nav-end flex items-center gap-4">
                <NavSearch />
 
                {theme === 'light'

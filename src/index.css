@@ -24,7 +24,7 @@ body {
     -moz-transform: translateY(100%);
     -ms-transform: translateY(100%);
     -o-transform: translateY(100%);
-  }
+}
 
   50% {
     opacity: 1;
@@ -37,7 +37,7 @@ body {
     -moz-transform: translateY(-100%);
     -ms-transform: translateY(-100%);
     -o-transform: translateY(-100%);
-  }
+}
 }
 
 .shape {
@@ -83,7 +83,6 @@ body {
   animation-duration: 9s;
   animation-delay: 4s;
 }
-
 .shape:nth-child(6) {
   width: 50px;
   height: 50px;
