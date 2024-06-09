@@ -1,35 +1,55 @@
-import Banner from "../Components/Banner";
-import Navbar from "../Components/Navbar";
-import Wrapper from "../Components/Wrapper";
-import { useTheme } from "../Hooks/useTheme";
-import { games, populars } from "../Lib/PlaceholderData";
-import { FaFire } from "react-icons/fa6";
-import { MdOutlineGamepad } from "react-icons/md";
-import logo from '../Asset/logo.webp'
-import Section from '../Components/Section'
-import Footer from "../Components/Footer";
-import CardList from "../Components/CardList";
+import { sales, games, populars } from "../lib/placeholder-data";
+import { FaFire, FaBolt } from "react-icons/fa6";
+import { TbDeviceGamepad2 } from "react-icons/tb";
+import { useEffect } from "react"
+import { useSelector } from "react-redux";
+import Banner from "../components/Banner";
+import Navbar from "../components/Navbar";
+import Section from '../components/Section'
+import Footer from "../components/Footer";
+import CardList from "../components/CardList";
+import Countdown from "../components/Countdown";
 
 export default function Beranda() {
-   const { theme, toggleTheme } = useTheme()
+   const darkMode = useSelector((state) => state.darkMode.value)
+
+   useEffect(() => {
+      if (darkMode) {
+         document.documentElement.classList.add('dark')
+      } else {
+         document.documentElement.classList.remove('dark')
+      }
+   }, [darkMode])
+
    return (
-      <Wrapper theme={theme}>
-         <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <div
+         className="bg-white dark:bg-zinc-900 transition-all duration-500">
+         <Navbar />
          <Banner />
+
          <main>
-            <div className="container w-[93%] flex flex-col gap-6">
-               <Section id="populer" className='mb-7'>
-                  <header className="flex items-center gap-2 text-white text-xl mb-4">
-                     <FaFire />
-                     <h1 className="border-b-2 border-yellow-200">Popular</h1>
+            <div className="container w-[93%] flex flex-col gap-10">
+               <Section id="sales" className="bg-zinc-300 p-3 rounded-md dark:bg-zinc-950">
+                  <header className="flex items-center gap-2 text-zinc-700 font-semibold text-xl mb-5 dark:text-white">
+                     <FaBolt className="text-yellow-300" />
+                     <h1 className="text-md lg:text-lg border-b-2 border-yellow-200 mr-2">Flash Sale</h1>
+                     <Countdown />
+                  </header>
+                  <CardList items={sales} type='sales' />
+               </Section>
+
+               <Section id="populer">
+                  <header className="flex items-center gap-2 text-zinc-900 text-xl font-semibold mb-4 dark:text-zinc-50">
+                     <FaFire className="text-red-500" />
+                     <h1 className="text-md lg:text-lg border-b-2 border-yellow-200">Popular</h1>
                   </header>
                   <CardList items={populars} type='popular' />
                </Section>
 
                <Section id="games">
-                  <header className="flex items-center gap-2 text-white text-xl mb-5">
-                     <MdOutlineGamepad className="-skew-x-6 text-yellow-300" />
-                     <h1 className="border-b-2 border-yellow-200">Games</h1>
+                  <header className="flex items-center gap-2 text-zinc-900 text-xl font-semibold mb-5 dark:text-zinc-50">
+                     <TbDeviceGamepad2 className="-skew-x-6 text-teal-600 text-2xl dark:text-teal-300" />
+                     <h1 className="text-md lg:text-lg border-b-2 border-red-500 dark:border-yellow-200">Games</h1>
                   </header>
                   <CardList items={games} type='games' />
                </Section>
@@ -37,6 +57,6 @@ export default function Beranda() {
          </main>
 
          <Footer />
-      </Wrapper>
+      </div>
    )
 }

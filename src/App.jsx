@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Beranda from "./Pages/Beranda";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import Beranda from "./pages/Beranda";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 export default function App() {
    return (

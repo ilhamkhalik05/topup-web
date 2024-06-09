@@ -5,18 +5,36 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./src/**/**/*.{js,ts,jsx,tsx}",
     "./src/**/**/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
-      colors: {
-        'primary': '#ffef02'
+      keyframes: {
+        slideLeft: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        slideOut: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      animation: {
+        slideLeft: 'slideLeft 1s linear infinite',
+        slideIn: 'slideIn 0.5s forwards',
+        slideOut: 'slideOut 0.5s forwards',
       },
       container: {
-        center: true
+        center: true,
       },
     },
   },
   plugins: [
-    require('daisyui')
+    require('daisyui'),
+    require('flowbite/plugin')
   ],
 }

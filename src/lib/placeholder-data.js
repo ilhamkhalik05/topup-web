@@ -1,3 +1,46 @@
+export const sales = [
+   {
+      id: 1,
+      title: 'Mobile Legend',
+      image: "https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F5f67a939-49a8-486a-a3ba-2bf25b5e88bf.webp&w=48&q=75",
+      price: 50000,
+      sale: 35000,
+      quantity: 50,
+      type: "Diamond",
+      stok: 20,
+   },
+   {
+      id: 2,
+      title: 'Mobile Legend',
+      image: "https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F5f67a939-49a8-486a-a3ba-2bf25b5e88bf.webp&w=48&q=75",
+      price: 100000,
+      sale: 80000,
+      quantity: 100,
+      type: "Diamond",
+      stok: 90,
+   },
+   {
+      id: 3,
+      title: 'Free Fire',
+      image: "https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F5f67a939-49a8-486a-a3ba-2bf25b5e88bf.webp&w=48&q=75",
+      price: 200000,
+      sale: 160000,
+      quantity: 200,
+      type: "Diamond",
+      stok: 100,
+   },
+   {
+      id: 4,
+      title: 'Free Fire',
+      image: "https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F5f67a939-49a8-486a-a3ba-2bf25b5e88bf.webp&w=48&q=75",
+      price: 150000,
+      sale: 120000,
+      quantity: 200,
+      type: "Diamond",
+      stok: 40,
+   },
+]
+
 export const populars = [
    {
       id: 1,

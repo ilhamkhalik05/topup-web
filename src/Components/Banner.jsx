@@ -1,8 +1,9 @@
-import banner from '../Asset/banner.webp';
+import banner from '../assets/banner.webp';
+import bannerMobile from '../assets/banner-mobile.webp';
 
 export default function Banner() {
    return (
-      <div className="relative w-full h-[80vh] flex justify-center items-center mb-20">
+      <div className="relative container w-[93%] mb-20 lg:h-[80vh] lg:mb-10">
          <div className="absolute inset-0">
             <div className="shape"></div>
             <div className="shape"></div>
@@ -11,8 +12,17 @@ export default function Banner() {
             <div className="shape"></div>
             <div className="shape"></div>
          </div>
-         <div className="banner-image w-full h-full lg:w-[93%] mt-10">
-            <img className="relative w-full h-full object-cover rounded-lg" src={banner} alt="banner" />
+         <div className="mt-10 relative banner-img">
+            <img
+            className="hidden lg:block w-full h-full object-contain object-center rounded-lg"
+               src={banner}
+               alt="banner"
+            />
+            <img
+               className="block lg:hidden w-full h-full object-contain object-center rounded-lg"
+               src={bannerMobile}
+               alt="banner"
+            />
          </div>
       </div>
    );
