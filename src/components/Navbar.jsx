@@ -38,8 +38,8 @@ const NavStart = () => (
       <img src={logo} alt="Logo" width={150} />
       <div className={`hidden lg:flex items-center gap-5 border-s-2 border-yellow-300 pl-5`}>
          <a className="text-zinc-800 hover:text-yellow-600 dark:text-zinc-200 dark:hover:text-yellow-200" href="">Home</a>
-         <a className="text-zinc-800 hover:text-yellow-600 dark:text-zinc-200 dark:hover:text-yellow-200" href="">Daftar Layanan</a>
-         <a className="text-zinc-800 hover:text-yellow-600 dark:text-zinc-200 dark:hover:text-yellow-200" href="">Cek Transaksi</a>
+         <a className="text-zinc-800 hover:text-yellow-600 dark:text-zinc-200 dark:hover:text-yellow-200" href="/layanan">Daftar Layanan</a>
+         <a className="text-zinc-800 hover:text-yellow-600 dark:text-zinc-200 dark:hover:text-yellow-200" href="/transaksi">Cek Transaksi</a>
       </div>
    </div>
 );

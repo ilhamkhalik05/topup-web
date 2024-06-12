@@ -55,6 +55,19 @@ export default function CardList({ items, type }) {
             </div>
          )
 
+         case 'layanan':
+            return (
+               <Marquee className="overflow-hidden" speed={100}>
+               <div className="grid grid-cols-2 gap-2 lg:grid-cols-8">
+                  {items.map((game) => {
+                     return (
+                        <Layanancard key={game.id} title={game.title} image={game.image} />
+                     )
+                  })}
+               </div>
+               </Marquee>
+            )   
+
       default:
          return null
    }
@@ -140,6 +153,31 @@ const Gamecard = ({ title, image }) => {
       <a
          href="/"
          className="group card relative cursor-pointer rounded-lg h-52 lg:h-64">
+         <img
+            src={image}
+            alt={title}
+            className="object-cover object-center w-full h-full brightness-75 rounded-md group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
+         />
+         <div className="flex flex-col items-center justify-center gap-5 w-full text-zinc-50 absolute inset-0 py-5 px-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 ease-in-out">
+            <img
+               src={logo}
+               alt="logo"
+               width={140}
+               className="transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"
+            />
+            <h1 className="font-bold text-md text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out">
+               {title}
+            </h1>
+         </div>
+      </a>
+   )
+}
+
+const Layanancard = ({ title, image }) => {
+   return (
+      <a
+         href="/"
+         className="group card relative cursor-pointer rounded-lg h-52 lg:h-[260px]">
          <img
             src={image}
             alt={title}
