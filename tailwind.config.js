@@ -31,6 +31,9 @@ export default {
       container: {
         center: true,
       },
+      backgroundImage: {
+        'auth-img': "url('/src/assets/auth-img.webp')",
+      }
     },
   },
   plugins: [

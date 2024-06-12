@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleDarkMode } from "../app/features/dark-mode/dark-mode-slice";
 import { showSearchModal } from "../app/features/search-modal/search-modal-slice";
 import { showMobileNav } from "../app/features/mobile-nav/mobile-nav-slice";
-import logo from '../assets/logo.webp';
+import { logo } from "./Assets";
 import SearchModal from "./SearchModal";
 import SideNav from "./SideNav";
 
@@ -65,7 +65,7 @@ const NavAuth = () => (
    <div className="user hidden lg:flex items-center gap-2">
       <Link
          className="px-5 py-2 bg-yellow-300 text-black rounded-lg glass flex items-center gap-2 hover:bg-yellow-200 ease-in duration-150"
-         to="/login"
+         to="/signin"
       >
          <FaArrowRightFromBracket />
          Masuk

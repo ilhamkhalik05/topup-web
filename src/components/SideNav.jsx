@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeMobileNav } from "../app/features/mobile-nav/mobile-nav-slice";
-import { FaHome, FaList, FaMoon, FaRegUser, FaSearch, FaSun, FaUser } from "react-icons/fa";
+import { FaHome, FaList, FaMoon, FaSearch, FaSun, FaUser } from "react-icons/fa";
 import { setDarkMode, resetDarkMode } from "../app/features/dark-mode/dark-mode-slice";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-import logo from '../assets/logo.webp';
+import { Link } from "react-router-dom";
+import { logo } from './Assets'
 
 export default function SideNav() {
    const darkMode = useSelector((state) => state.darkMode.value);
@@ -69,11 +70,15 @@ export default function SideNav() {
                               Dark Mode
                            </button>
                         }
-                        <a className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200" href="">
+                        <Link
+                           className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200"
+                           to="/signin">
                            <FaArrowRightFromBracket />
                            Masuk
-                        </a>
-                        <a className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200" href="">
+                        </Link>
+                        <a
+                           className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200"
+                           to="/signup">
                            <FaUser />
                            Daftar
                         </a>

@@ -7,11 +7,16 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: 'Inter', 'Lato';
+  font-family: 'Poppins', 'Lato';
 }
 
 body {
   overflow-x: hidden;
+}
+
+button {
+  border: none;
+  outline: none;
 }
 
 /* ANIMASI */

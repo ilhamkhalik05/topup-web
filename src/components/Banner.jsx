@@ -1,5 +1,4 @@
-import banner from '../assets/banner.webp';
-import bannerMobile from '../assets/banner-mobile.webp';
+import { banner, bannerMobile } from "./Assets";
 
 export default function Banner() {
    return (
@@ -14,7 +13,7 @@ export default function Banner() {
          </div>
          <div className="mt-10 relative banner-img">
             <img
-            className="hidden lg:block w-full h-full object-contain object-center rounded-lg"
+               className="hidden lg:block w-full h-full object-contain object-center rounded-lg"
                src={banner}
                alt="banner"
             />
