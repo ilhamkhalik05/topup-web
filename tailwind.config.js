@@ -35,7 +35,7 @@ export default {
         'auth-img': "url('/src/assets/auth-img.webp')",
       },
       boxShadow: {
-        'salecard': "5px 6px"
+        'salecard': "5px 7px"
       }
     },
   },

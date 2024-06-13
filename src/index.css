@@ -29,7 +29,7 @@ button {
     -moz-transform: translateY(100%);
     -ms-transform: translateY(100%);
     -o-transform: translateY(100%);
-}
+  }
 
   50% {
     opacity: 1;
@@ -42,7 +42,7 @@ button {
     -moz-transform: translateY(-100%);
     -ms-transform: translateY(-100%);
     -o-transform: translateY(-100%);
-}
+  }
 }
 
 .shape {
@@ -88,10 +88,39 @@ button {
   animation-duration: 9s;
   animation-delay: 4s;
 }
+
 .shape:nth-child(6) {
   width: 50px;
   height: 50px;
   left: 70%;
   animation-duration: 9s;
   animation-delay: 4s;
+}
+
+.swiper-pagination-bullet {
+  width: 50px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50px;
+  margin: 0 5px;
+  opacity: 1;
+  transition: background-color 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: rgb(45 212 191);
+}
+
+@media (max-width: 1024px) {
+  .swiper-pagination-bullet {
+    width: 30px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 4px;
+  }
 }

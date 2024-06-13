@@ -28,10 +28,12 @@ export default function Beranda() {
          <Banner />
 
          <div className="container w-[93%] flex flex-col gap-14 mt-10">
-            <Section id="sales" className="bg-zinc-300 px-3 pt-5 pb-8 rounded-md dark:bg-zinc-950 shadow-salecard shadow-yellow-300">
-               <header className="flex items-center gap-2 text-zinc-700 font-semibold text-xl mb-5 dark:text-white">
-                  <FaBolt className="text-yellow-300" />
-                  <h1 className="text-md lg:text-lg border-b-2 border-yellow-200 mr-2">Flash Sale</h1>
+            <Section id="sales" className="bg-transparent rounded-lg shadow-zinc-950 dark:bg-transparent">
+               <header className="flex flex-row items-center justify-between gap-3 lg:justify-start text-zinc-700 font-semibold text-xl mb-5 dark:text-white">
+                  <div className="flex items-center gap-2">
+                     <FaBolt className="text-yellow-300" />
+                     <h1 className="text-md lg:text-lg border-b-2 border-yellow-200 mr-2">Flash Sale</h1>
+                  </div>
                   <Countdown />
                </header>
                <CardList items={sales} type='sales' />

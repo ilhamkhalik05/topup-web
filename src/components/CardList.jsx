@@ -13,14 +13,14 @@ export default function CardList({ items, type }) {
       case 'sales':
          return (
             <Marquee
-               className="overflow-hidden"
+               className="overflow-hidden rounded-md"
                pauseOnHover={true}
                speed={100}
                gradient={true}
-               gradientColor={darkMode ? "rgb(9 9 11)" : "rgb(212 212 216)"}
-               gradientWidth={100}
+               gradientColor={"rgb(39 39 42)"}
+               gradientWidth={50}
             >
-               <div className="grid grid-cols-4 gap-3 mx-2">
+               <div className="grid grid-cols-4 gap-3 mx-2 rounded-xl">
                   {items.map((item) => (
                      <SaleCard
                         key={item.id}
@@ -40,7 +40,7 @@ export default function CardList({ items, type }) {
       // Popular List
       case 'popular':
          return (
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                {items.map((item) => {
                   return (
                      <PopularCard
@@ -57,7 +57,7 @@ export default function CardList({ items, type }) {
       // Games List
       case 'games':
          return (
-            <div className="grid grid-cols-2 gap-2 lg:grid-cols-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
                {items.map((game) => {
                   return (
                      <Gamecard key={game.id} title={game.title} image={game.image} />
@@ -94,23 +94,21 @@ const SaleCard = ({ title, image, price, sale, quantity, type, stok }) => {
    return (
       <Link
          to="/"
-         className="relative cursor-pointer flex flex-row items-center gap-3 rounded-lg bg-zinc-900 w-80 p-3"
+         className="relative cursor-pointer flex flex-row items-center gap-2 rounded-lg bg-zinc-800 w-80 p-3 lg:gap-3"
       >
          <img
             src={image}
             alt={title}
-            width={100}
-            height={100}
             className="w-1/4"
          />
          <div className="w-3/4 flex flex-col text-zinc-200">
             <h1 className="font-bold">{title}</h1>
             <h2 className="text-xs text-red-600 italic line-through">Rp {formatToRupiah(price)}</h2>
-            <h2 className="tex-xs">Rp {formatToRupiah(sale)}</h2>
-            <h2 className="tex-xs mb-1">{quantity} {type}</h2>
-            <div className="w-full h-6 bg-black rounded-full relative">
+            <h2 className="text-md font-light">Rp. {formatToRupiah(sale)}</h2>
+            <h2 className="text-md font-medium mb-1">{quantity} {type}</h2>
+            <div className="w-full h-4 lg:h-6 bg-black rounded-full relative">
                <div
-                  className="h-6 bg-gradient-to-r from-yellow-300 to-red-600 text-xs font-medium text-blue-100 flex items-center justify-center p-1 leading-none rounded-full overflow-x-hidden"
+                  className="h-4 lg:h-6 bg-gradient-to-r from-yellow-300 to-red-600 text-xs font-medium text-blue-100 flex items-center justify-center p-1 leading-none rounded-full overflow-x-hidden"
                   style={{ width: `100%` }}
                >
                </div>
@@ -118,7 +116,12 @@ const SaleCard = ({ title, image, price, sale, quantity, type, stok }) => {
                   {stok} stok
                </div>
                <div className="absolute -top-2 -left-1">
-                  <img src={fire} alt="fire" width={30} />
+                  <div className="hidden lg:block">
+                     <img src={fire} alt="fire" width={30} />
+                  </div>
+                  <div className="block lg:hidden">
+                     <img src={fire} alt="fire" width={25} />
+                  </div>
                </div>
             </div>
          </div>
