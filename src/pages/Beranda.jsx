@@ -1,29 +1,17 @@
 import { sales, games, populars } from "../lib/placeholder-data";
 import { FaFire, FaBolt } from "react-icons/fa6";
 import { TbDeviceGamepad2 } from "react-icons/tb";
-import { useEffect } from "react"
-import { useSelector } from "react-redux";
 import Banner from "../components/Banner";
 import Navbar from "../components/Navbar";
 import Section from '../components/Section'
 import Footer from "../components/Footer";
 import CardList from "../components/CardList";
 import Countdown from "../components/Countdown";
+import RootLayout from "../RootLayout";
 
 export default function Beranda() {
-   const darkMode = useSelector((state) => state.darkMode.value)
-
-   useEffect(() => {
-      if (darkMode) {
-         document.documentElement.classList.add('dark')
-      } else {
-         document.documentElement.classList.remove('dark')
-      }
-   }, [darkMode])
-
    return (
-      <div
-         className="bg-white dark:bg-zinc-900 transition-all duration-500">
+      <RootLayout>
          <Navbar />
          <Banner />
 
@@ -56,6 +44,6 @@ export default function Beranda() {
             </Section>
          </div>
          <Footer />
-      </div>
+      </RootLayout>
    )
 }

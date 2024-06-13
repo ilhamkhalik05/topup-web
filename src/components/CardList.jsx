@@ -1,12 +1,10 @@
 import { formatToRupiah, getPriceSavings } from "../lib/utils"
+import { Link } from "react-router-dom"
 import logo from "../assets/logo.webp"
 import fire from "../assets/fire.svg"
 import Marquee from "react-fast-marquee"
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 
 export default function CardList({ items, type }) {
-   const darkMode = useSelector((state) => state.darkMode.value)
 
    switch (type) {
       //Flash Sale List
@@ -73,7 +71,8 @@ export default function CardList({ items, type }) {
                speed={100}
                pauseOnHover={true}
                gradient={true}
-               gradientColor={darkMode ? "rgb(24 24 27)" : "rgb(250 250 250)"}
+               gradientColor={"rgb(24 24 27)"}
+               gradientWidth={50}
             >
                <div className="grid grid-cols-8">
                   {items.map((game) => {
