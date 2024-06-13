@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { closeMobileNav } from "../app/features/mobile-nav/mobile-nav-slice";
 import { FaHome, FaList, FaMoon, FaSearch, FaSun, FaUser } from "react-icons/fa";
 import { setDarkMode, resetDarkMode } from "../app/features/dark-mode/dark-mode-slice";
@@ -7,10 +8,12 @@ import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { logo } from './Assets'
 
-export default function SideNav() {
+export default function SideNav({ links }) {
    const darkMode = useSelector((state) => state.darkMode.value);
    const isMobileNavShow = useSelector((state) => state.mobileNav.show);
    const dispatch = useDispatch();
+   const location = useLocation();
+   const { pathname } = location;
    const [animationClass, setAnimationClass] = useState("");
 
    useEffect(() => {
@@ -21,7 +24,7 @@ export default function SideNav() {
       }
    }, [isMobileNavShow]);
 
-   if (!isMobileNavShow && animationClass === "animate-slideOut") {
+   if (!isMobileNavShow) {
       return null;
    }
 
@@ -40,18 +43,17 @@ export default function SideNav() {
                   <hr className="w-full border border-yellow-200 mt-5 mb-7" />
                   <div className="w-full flex flex-col items-start gap-5 ml-3">
                      <div className={`flex flex-col items-start gap-2`}>
-                        <a className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200" href="">
-                           <FaHome />
-                           Beranda
-                        </a>
-                        <a className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200" href="">
-                           <FaList />
-                           Daftar Layanan
-                        </a>
-                        <a className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200" href="">
-                           <FaSearch />
-                           Cek Transaksi
-                        </a>
+                        {links.map((link, index) => {
+                           return (
+                              <Link
+                                 className={`flex items-center gap-3 ${pathname === link.path ? 'text-yellow-400 dark:text-yellow-200' : 'text-zinc-800 dark:text-zinc-200'} hover:text-yellow-400 dark:hover:text-yellow-200`}
+                                 key={index}
+                                 to={link.path}>
+                                 {link.icon}
+                                 {link.label}
+                              </Link>
+                           )
+                        })}
                      </div>
                      <div className={`flex flex-col items-start gap-2`}>
                         {darkMode
@@ -76,12 +78,12 @@ export default function SideNav() {
                            <FaArrowRightFromBracket />
                            Masuk
                         </Link>
-                        <a
+                        <Link
                            className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200"
                            to="/signup">
                            <FaUser />
                            Daftar
-                        </a>
+                        </Link>
                      </div>
                   </div>
                </div>

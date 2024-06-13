@@ -2,7 +2,7 @@ import { banner, bannerMobile } from "./Assets";
 
 export default function Banner() {
    return (
-      <div className="relative container w-[93%] mb-20 lg:h-[80vh] lg:mb-10">
+      <div className="relative container w-[93%] lg:h-[80vh]">
          <div className="absolute inset-0">
             <div className="shape"></div>
             <div className="shape"></div>

@@ -1,15 +1,26 @@
-import { formatToRupiah, getPriceSavings, getStockInPercent } from "../lib/utils"
+import { formatToRupiah, getPriceSavings } from "../lib/utils"
 import logo from "../assets/logo.webp"
 import fire from "../assets/fire.svg"
 import Marquee from "react-fast-marquee"
+import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 
 export default function CardList({ items, type }) {
+   const darkMode = useSelector((state) => state.darkMode.value)
+
    switch (type) {
       //Flash Sale List
       case 'sales':
          return (
-            <Marquee className="overflow-hidden whitespace-nowrap" pauseOnHover={true} speed={100}>
-               <div className="flex flex-row gap-3 mx-3">
+            <Marquee
+               className="overflow-hidden"
+               pauseOnHover={true}
+               speed={100}
+               gradient={true}
+               gradientColor={darkMode ? "rgb(9 9 11)" : "rgb(212 212 216)"}
+               gradientWidth={100}
+            >
+               <div className="grid grid-cols-4 gap-3 mx-2">
                   {items.map((item) => (
                      <SaleCard
                         key={item.id}
@@ -55,19 +66,24 @@ export default function CardList({ items, type }) {
             </div>
          )
 
-         case 'layanan':
-            return (
-               <Marquee className="overflow-hidden" speed={100}>
-               <div className="grid grid-cols-2 gap-2 lg:grid-cols-8">
+      case 'layanan':
+         return (
+            <Marquee
+               className="overflow-hidden"
+               speed={100}
+               pauseOnHover={true}
+               gradient={true}
+               gradientColor={darkMode ? "rgb(24 24 27)" : "rgb(250 250 250)"}
+            >
+               <div className="grid grid-cols-8">
                   {items.map((game) => {
                      return (
                         <Layanancard key={game.id} title={game.title} image={game.image} />
                      )
                   })}
                </div>
-               </Marquee>
-            )   
-
+            </Marquee>
+         )
       default:
          return null
    }
@@ -75,10 +91,9 @@ export default function CardList({ items, type }) {
 
 const SaleCard = ({ title, image, price, sale, quantity, type, stok }) => {
    const priceSaving = getPriceSavings(price, sale)
-   // const stockInPercent = getStockInPercent(stok) // Not fixed bug
    return (
-      <a
-         href=""
+      <Link
+         to="/"
          className="relative cursor-pointer flex flex-row items-center gap-3 rounded-lg bg-zinc-900 w-80 p-3"
       >
          <img
@@ -115,7 +130,7 @@ const SaleCard = ({ title, image, price, sale, quantity, type, stok }) => {
                Rp {formatToRupiah(priceSaving)}
             </div>
          </div>
-      </a>
+      </Link>
    )
 }
 
@@ -133,7 +148,7 @@ const PopularCard = ({ title, image, tipe }) => {
             className="block lg:hidden rounded-md"
          />
          {/* Desktop Image Card */}
-          <img
+         <img
             src={image}
             alt={title}
             width={80}
@@ -177,11 +192,11 @@ const Layanancard = ({ title, image }) => {
    return (
       <a
          href="/"
-         className="group card relative cursor-pointer rounded-lg h-52 lg:h-[260px]">
+         className="group card relative cursor-pointer h-52 lg:h-[260px] w-auto">
          <img
             src={image}
             alt={title}
-            className="object-cover object-center w-full h-full brightness-75 rounded-md group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
+            className="object-cover object-center w-full h-full brightness-75 group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
          />
          <div className="flex flex-col items-center justify-center gap-5 w-full text-zinc-50 absolute inset-0 py-5 px-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 ease-in-out">
             <img

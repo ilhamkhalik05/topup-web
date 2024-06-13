@@ -27,35 +27,32 @@ export default function Beranda() {
          <Navbar />
          <Banner />
 
-         <main>
-            <div className="container w-[93%] flex flex-col gap-10">
-               <Section id="sales" className="bg-zinc-300 p-3 rounded-md dark:bg-zinc-950">
-                  <header className="flex items-center gap-2 text-zinc-700 font-semibold text-xl mb-5 dark:text-white">
-                     <FaBolt className="text-yellow-300" />
-                     <h1 className="text-md lg:text-lg border-b-2 border-yellow-200 mr-2">Flash Sale</h1>
-                     <Countdown />
-                  </header>
-                  <CardList items={sales} type='sales' />
-               </Section>
+         <div className="container w-[93%] flex flex-col gap-14 mt-10">
+            <Section id="sales" className="bg-zinc-300 px-3 pt-5 pb-8 rounded-md dark:bg-zinc-950 shadow-salecard shadow-yellow-300">
+               <header className="flex items-center gap-2 text-zinc-700 font-semibold text-xl mb-5 dark:text-white">
+                  <FaBolt className="text-yellow-300" />
+                  <h1 className="text-md lg:text-lg border-b-2 border-yellow-200 mr-2">Flash Sale</h1>
+                  <Countdown />
+               </header>
+               <CardList items={sales} type='sales' />
+            </Section>
 
-               <Section id="populer">
-                  <header className="flex items-center gap-2 text-zinc-900 text-xl font-semibold mb-4 dark:text-zinc-50">
-                     <FaFire className="text-red-500" />
-                     <h1 className="text-md lg:text-lg border-b-2 border-yellow-200">Popular</h1>
-                  </header>
-                  <CardList items={populars} type='popular' />
-               </Section>
+            <Section id="populer">
+               <header className="flex items-center gap-2 text-zinc-900 text-xl font-semibold mb-4 dark:text-zinc-50">
+                  <FaFire className="text-red-500" />
+                  <h1 className="text-md lg:text-lg border-b-2 border-yellow-200">Popular</h1>
+               </header>
+               <CardList items={populars} type='popular' />
+            </Section>
 
-               <Section id="games">
-                  <header className="flex items-center gap-2 text-zinc-900 text-xl font-semibold mb-5 dark:text-zinc-50">
-                     <TbDeviceGamepad2 className="-skew-x-6 text-teal-600 text-2xl dark:text-teal-300" />
-                     <h1 className="text-md lg:text-lg border-b-2 border-red-500 dark:border-yellow-200">Games</h1>
-                  </header>
-                  <CardList items={games} type='games' />
-               </Section>
-            </div>
-         </main>
-
+            <Section id="games">
+               <header className="flex items-center gap-2 text-zinc-900 text-xl font-semibold mb-5 dark:text-zinc-50">
+                  <TbDeviceGamepad2 className="-skew-x-6 text-teal-600 text-2xl dark:text-teal-300" />
+                  <h1 className="text-md lg:text-lg border-b-2 border-red-500 dark:border-yellow-200">Games</h1>
+               </header>
+               <CardList items={games} type='games' />
+            </Section>
+         </div>
          <Footer />
       </div>
    )

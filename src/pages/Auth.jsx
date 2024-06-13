@@ -2,12 +2,22 @@ import { Link } from 'react-router-dom'
 import { authSideImg } from '../components/Assets'
 import { SignInForm, SignUpForm } from '../components/Form'
 import { FaAnglesLeft } from "react-icons/fa6";
+import { FaHome } from "react-icons/fa"
+
 export default function Auth({ currentPage }) {
    return (
       <>
+         {/* Mobile Home Redirect */}
+         <div className="z-50 glass block lg:hidden fixed right-4 bottom-5 bg-zinc-100 rounded-md p-3 shadow-xl shadow-gray-950 text-lg">
+            <Link to={'/'}>
+               <FaHome />
+            </Link>
+         </div>
+
+         {/* Desktop Home Redirect */}
          <div className="hidden lg:block fixed left-3 top-6">
             <Link className='px-4 py-2 rounded-lg bg-transparent text-gray-400 text-md flex items-center gap-1 italic hover:text-gray-300 ease-in-out duration-300' to={'/'}>
-               <FaAnglesLeft className='-skew-x-12'/>
+               <FaAnglesLeft className='-skew-x-12' />
                Back to Home
             </Link>
          </div>
@@ -20,18 +30,7 @@ export default function Auth({ currentPage }) {
             {/* Auth Form */}
             <div className="block w-full lg:w-1/2 bg-gradient-to-b from-slate-900 to-slate-950 overflow-y-auto">
                <div className="container px-5 py-7 flex flex-col">
-                  <div className="mb-7 flex items-center w-full shadow-xl shadow-slate-950 font-semibold">
-                     <Link
-                        className={`${currentPage === 'signin' ? 'bg-yellow-400 text-zinc-50' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-s-xl`}
-                        to="/signin">
-                        Masuk
-                     </Link>
-                     <Link
-                        className={`${currentPage === 'signup' ? 'bg-yellow-400 text-zinc-50' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-e-xl`}
-                        to="/signup">
-                        Daftar
-                     </Link>
-                  </div>
+                  <ToggleForm currentPage={currentPage} />
 
                   <div className="w-full outline outline-gray-800 shadow-inner shadow-gray-950 rounded-md p-3 lg:p-5">
                      {currentPage === 'signin' ? <SignInForm /> : <SignUpForm />}
@@ -44,5 +43,23 @@ export default function Auth({ currentPage }) {
             </div>
          </div>
       </>
+   )
+}
+
+
+const ToggleForm = ({ currentPage }) => {
+   return (
+      <div className="mb-7 flex items-center w-full shadow-xl shadow-slate-950 font-semibold">
+         <Link
+            className={`${currentPage === 'signin' ? 'bg-yellow-400 text-zinc-50' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-s-xl`}
+            to="/signin"> 
+            Masuk
+         </Link>
+         <Link
+            className={`${currentPage === 'signup' ? 'bg-yellow-400 text-zinc-50' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-e-xl`}
+            to="/signup">
+            Daftar
+         </Link>
+      </div>
    )
 }
