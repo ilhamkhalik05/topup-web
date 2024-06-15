@@ -9,11 +9,16 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        "dark": "#0D0D0D",
+        "light": "#F5F5F5",
+        "primary": "#f97316",
+        "secondPrimary": "#fa8f42",
+        "accent": "#003566",
+        "secondAccent": "#001d3d",
+        "alterAccent": "#000814"
+      },
       keyframes: {
-        slideLeft: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-100%)' },
-        },
         slideIn: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
@@ -24,7 +29,6 @@ export default {
         },
       },
       animation: {
-        slideLeft: 'slideLeft 1s linear infinite',
         slideIn: 'slideIn 0.5s forwards',
         slideOut: 'slideOut 0.5s forwards',
       },
@@ -33,9 +37,11 @@ export default {
       },
       backgroundImage: {
         'auth-img': "url('/src/assets/auth-img.webp')",
+        'card': "url('/src/assets/card.webp')",
+        'wavy-footer': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDQwIDMyMCI+PHBhdGggZmlsbD0iIzAwOTlmZiIgZmlsbC1vcGFjaXR5PSIxIiBkPSJNM')",
       },
-      boxShadow: {
-        'salecard': "5px 7px"
+      ringWidth: {
+        '3': '3px',
       }
     },
   },

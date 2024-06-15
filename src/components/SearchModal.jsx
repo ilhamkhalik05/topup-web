@@ -2,13 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSearchModal } from '../app/features/search-modal/search-modal-slice';
 import { FaSearch } from 'react-icons/fa';
-import { populars } from '../lib/placeholder-data';
 import { Link } from 'react-router-dom';
+import { products } from '../lib/products';
 
 const SearchModal = () => {
    const dispatch = useDispatch();
    const isSearchModalShow = useSelector(state => state.searchModal.show);
-   const suggestions = populars.slice(0, 8); // Popular data for suggestion
+   const suggestions = products.slice(0, 4); // Popular data for suggestion
 
    if (!isSearchModalShow) return null;
 

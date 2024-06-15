@@ -1,14 +1,14 @@
-import { banner, bannerMobile } from "./Assets";
 import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
+import { bannerImage } from "./Assets";
 
 export default function Banner() {
    return (
-      <div className="relative container w-[93%] mb-14">
+      <div className="relative">
          <div className="absolute inset-0">
             <div className="shape"></div>
             <div className="shape"></div>
@@ -17,7 +17,7 @@ export default function Banner() {
             <div className="shape"></div>
             <div className="shape"></div>
          </div>
-         <div className="mt-10 relative">
+         <div className="relative">
             <Swiper
                effect="coverflow"
                grabCursor={true}
@@ -41,28 +41,28 @@ export default function Banner() {
                <SwiperSlide>
                   <img
                      className="block w-full h-full object-contain object-center rounded-lg"
-                     src={"https://sin1.contabostorage.com/b1d79b8bbee7475eab6c15cd3d13cd4d:mengtopup/p/1705688512atdatang.webp"}
+                     src={bannerImage}
                      alt="banner"
                   />
                </SwiperSlide>
                <SwiperSlide>
                   <img
                      className="block w-full h-full object-contain object-center rounded-lg"
-                     src={"https://sin1.contabostorage.com/b1d79b8bbee7475eab6c15cd3d13cd4d:mengtopup/p/1705688529eseller.webp"}
+                     src={bannerImage}
                      alt="banner"
                   />
                </SwiperSlide>
                <SwiperSlide>
                   <img
                      className="block w-full h-full object-contain object-center rounded-lg"
-                     src={"https://sin1.contabostorage.com/b1d79b8bbee7475eab6c15cd3d13cd4d:mengtopup/p/1705688512atdatang.webp"}
+                     src={bannerImage}
                      alt="banner"
                   />
                </SwiperSlide>
                <SwiperSlide>
                   <img
                      className="block w-full h-full object-contain object-center rounded-lg"
-                     src={"https://sin1.contabostorage.com/b1d79b8bbee7475eab6c15cd3d13cd4d:mengtopup/p/1705688529eseller.webp"}
+                     src={bannerImage}
                      alt="banner"
                   />
                </SwiperSlide>

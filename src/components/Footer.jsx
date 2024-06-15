@@ -2,7 +2,7 @@ import logo from '../assets/logo.webp'
 
 export default function Footer() {
    return (
-      <footer className="footer p-10 mt-10 bg-zinc-200 dark:bg-zinc-950">
+      <footer className="footer bg-zinc-950 p-10 mt-10">
          <aside className="flex flex-col gap-3">
             <img src={logo} alt="" width={180} height={180} />
             <p className="text-black dark:text-zinc-300">WEBTOPUPKU<br />Website Top-Up Termurah, Tercepat & Terpercaya di Indonesia</p>

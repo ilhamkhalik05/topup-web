@@ -1,18 +1,17 @@
 import { authSideImg } from "../components/Assets";
-import { games, transactions } from "../lib/placeholder-data";
+import { transactions } from "../lib/placeholder-data";
+import { products } from "../lib/products";
 import CardList from "../components/CardList";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Section from "../components/Section";
 import { ServicesTable } from "../components/Table";
 import { Link } from "react-router-dom";
 import RootLayout from "../RootLayout";
+import Container from "../components/Container";
 
 export default function Services() {
     return (
         <RootLayout>
-            <Navbar />
-            <div className="container w-[93%] flex flex-col mt-10">
+            <Container>
                 <div className="relative p-3 overflow-hidden mb-10 lg:p-6">
                     <div className="absolute inset-0 w-full h-full">
                         <img className="w-full h-full object-cover brightness-[0.2] rounded-md" src={authSideImg} alt="" />
@@ -32,7 +31,7 @@ export default function Services() {
                         <Link className="px-3 py-1 rounded-full bg-transparent border-2 border-solid border-zinc-500 dark:border-zinc-50 text-zinc-900 dark:text-white">Pulsa</Link>
                         <Link className="px-3 py-1 rounded-full bg-transparent border-2 border-solid border-zinc-500 dark:border-zinc-50 text-zinc-900 dark:text-white">Voucher</Link>
                     </div>
-                    <CardList items={games} type='layanan' />
+                    <CardList items={products} type='layanan' />
                 </Section>
 
                 <Section>
@@ -43,8 +42,7 @@ export default function Services() {
                         <ServicesTable datas={transactions} />
                     </div>
                 </Section>
-            </div>
-            <Footer />
+            </Container>
         </RootLayout>
     )
 }

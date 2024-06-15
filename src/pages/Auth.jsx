@@ -8,7 +8,10 @@ export default function Auth({ currentPage }) {
    return (
       <>
          {/* Mobile Home Redirect */}
-         <div className="z-50 glass block lg:hidden fixed right-4 bottom-5 bg-zinc-100 rounded-md p-3 shadow-xl shadow-gray-950 text-lg">
+         <div
+            className="tooltip tooltip-warning z-50 glass block lg:hidden fixed right-7 bottom-5 bg-zinc-100 rounded-md p-3 shadow-xl shadow-gray-950 text-lg"
+            data-tip="Ke Beranda"
+         >
             <Link to={'/'}>
                <FaHome />
             </Link>
@@ -52,7 +55,7 @@ const ToggleForm = ({ currentPage }) => {
       <div className="mb-7 flex items-center w-full shadow-xl shadow-slate-950 font-semibold">
          <Link
             className={`${currentPage === 'signin' ? 'bg-yellow-400 text-zinc-50' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-s-xl`}
-            to="/signin"> 
+            to="/signin">
             Masuk
          </Link>
          <Link

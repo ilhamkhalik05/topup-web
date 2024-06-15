@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import logo from "../assets/logo.webp"
 import fire from "../assets/fire.svg"
 import Marquee from "react-fast-marquee"
+import { diamond } from "./Assets"
 
 export default function CardList({ items, type }) {
-
    switch (type) {
       //Flash Sale List
       case 'sales':
@@ -14,16 +14,15 @@ export default function CardList({ items, type }) {
                className="overflow-hidden rounded-md"
                pauseOnHover={true}
                speed={100}
-               gradient={true}
-               gradientColor={"rgb(39 39 42)"}
-               gradientWidth={50}
+               // gradient={true}
+               // gradientColor={"rgb(39 39 42)"}
+               // gradientWidth={50}
             >
                <div className="grid grid-cols-4 gap-3 mx-2 rounded-xl">
                   {items.map((item) => (
                      <SaleCard
                         key={item.id}
                         title={item.title}
-                        image={item.image}
                         price={item.price}
                         sale={item.sale}
                         quantity={item.quantity}
@@ -44,8 +43,9 @@ export default function CardList({ items, type }) {
                      <PopularCard
                         key={item.id}
                         title={item.title}
+                        slug={item.slug}
                         image={item.image}
-                        tipe={item.tipe}
+                        type={item.type}
                      />
                   )
                })}
@@ -55,10 +55,16 @@ export default function CardList({ items, type }) {
       // Games List
       case 'games':
          return (
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
                {items.map((game) => {
                   return (
-                     <Gamecard key={game.id} title={game.title} image={game.image} />
+                     <GameCard
+                        key={game.id}
+                        title={game.title}
+                        developer={game.developer}
+                        slug={game.slug}
+                        image={game.image}
+                     />
                   )
                })}
             </div>
@@ -83,28 +89,48 @@ export default function CardList({ items, type }) {
                </div>
             </Marquee>
          )
+
+      case 'products':
+         const image = items.type_image
+         const type = items.type
+         const products = items.items
+         return (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+               {products.map((item) => {
+                  return (
+                     <ProductCard
+                        key={item.id}
+                        price={item.price}
+                        quantity={item.quantity}
+                        image={image}
+                        type={type}
+                     />
+                  )
+               })}
+            </div>
+         )
       default:
          return null
    }
 }
 
-const SaleCard = ({ title, image, price, sale, quantity, type, stok }) => {
+const SaleCard = ({ title, price, sale, quantity, type, stok }) => {
    const priceSaving = getPriceSavings(price, sale)
    return (
       <Link
          to="/"
-         className="relative cursor-pointer flex flex-row items-center gap-2 rounded-lg bg-zinc-800 w-80 p-3 lg:gap-3"
+         className="relative cursor-pointer flex flex-row items-center gap-3 rounded-lg bg-zinc-800 w-80 p-2 lg:gap-3"
       >
          <img
-            src={image}
+            src={diamond}
             alt={title}
-            className="w-1/4"
+            className="w-14"
          />
          <div className="w-3/4 flex flex-col text-zinc-200">
             <h1 className="font-bold">{title}</h1>
             <h2 className="text-xs text-red-600 italic line-through">Rp {formatToRupiah(price)}</h2>
-            <h2 className="text-md font-light">Rp. {formatToRupiah(sale)}</h2>
-            <h2 className="text-md font-medium mb-1">{quantity} {type}</h2>
+            <h2 className="text-xs lg:text-sm text-primary">Rp. {formatToRupiah(sale)}</h2>
+            <h2 className="text-xs lg:text-sm font-medium mb-1">{quantity} {type}</h2>
             <div className="w-full h-4 lg:h-6 bg-black rounded-full relative">
                <div
                   className="h-4 lg:h-6 bg-gradient-to-r from-yellow-300 to-red-600 text-xs font-medium text-blue-100 flex items-center justify-center p-1 leading-none rounded-full overflow-x-hidden"
@@ -136,18 +162,18 @@ const SaleCard = ({ title, image, price, sale, quantity, type, stok }) => {
    )
 }
 
-const PopularCard = ({ title, image, tipe }) => {
+const PopularCard = ({ title, slug, image, type }) => {
    return (
       <a
-         href="/"
-         className="group card glass cursor-pointer flex flex-row items-center gap-3 rounded-lg px-3 py-2 bg-yellow-400 hover:-translate-y-1 hover:bg-yellow-300 duration-500 ease-in-out lg:py-3 lg:px-5"
+         href={`/buy/${slug}`}
+         className="group glass cursor-pointer flex flex-row items-center gap-3 rounded-xl px-3 py-2 bg-card bg-cover bg-center hover:ring-2 hover:ring-primary ease-in-out duration-300 lg:py-3 lg:px-5"
       >
          {/* Mobile Image Card */}
          <img
             src={image}
             alt={title}
             width={65}
-            className="block lg:hidden rounded-md"
+            className="block lg:hidden rounded-md shadow-lg shadow-black"
          />
          {/* Desktop Image Card */}
          <img
@@ -155,38 +181,35 @@ const PopularCard = ({ title, image, tipe }) => {
             alt={title}
             width={80}
             height={80}
-            className="hidden lg:block rounded-md"
+            className="hidden lg:block rounded-md shadow-lg shadow-black"
          />
-         <div className="flex flex-col text-yellow-50 transition-colors duration-300 ease-in-out">
+         <div className="flex flex-col text-yellow-50 transition-colors">
             <h1 className="font-bold  line-clamp-2 leading-tight lg:line-clamp-none">{title}</h1>
-            <h2 className="text-sm font-light">{tipe}</h2>
+            <h2 className="text-sm font-light line-clamp-1">{type}</h2>
          </div>
       </a>
    )
 }
 
-const Gamecard = ({ title, image }) => {
+const GameCard = ({ title, developer, image }) => {
    return (
-      <a
-         href="/"
-         className="group card relative cursor-pointer rounded-lg h-52 lg:h-64">
+      <Link
+         to="/"
+         className="group relative cursor-pointer rounded-xl h-52 lg:h-64 hover:ring-2 ring-primary transition-all ease-in-out duration-150">
          <img
             src={image}
             alt={title}
-            className="object-cover object-center w-full h-full brightness-75 rounded-md group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
+            className="object-cover object-center w-full h-full rounded-xl brightness-90 transition"
          />
-         <div className="flex flex-col items-center justify-center gap-5 w-full text-zinc-50 absolute inset-0 py-5 px-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 ease-in-out">
-            <img
-               src={logo}
-               alt="logo"
-               width={140}
-               className="transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"
-            />
-            <h1 className="font-bold text-md text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out">
+         <div className="flex flex-col items-start justify-end px-3 py-5 w-full bg-gradient-to-b from-transparent from-5% to-black text-zinc-50 rounded-xl absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity">
+            <h1 className="font-bold text-lg line-clamp-2 transform translate-y-full group-hover:translate-y-0 transition-transform">
                {title}
             </h1>
+            <p className="text-sm text-gray-300 transform translate-y-full group-hover:translate-y-0 transition-transform">
+               {developer}
+            </p>
          </div>
-      </a>
+      </Link>
    )
 }
 
@@ -212,5 +235,22 @@ const Layanancard = ({ title, image }) => {
             </h1>
          </div>
       </a>
+   )
+}
+
+const ProductCard = ({ price, quantity, image, type }) => {
+   return (
+      <div
+         className="group cursor-pointer flex gap-10 bg-card bg-cover bg-center p-3 rounded-lg hover:ring-2 ring-primary transition-all ease-in-out"
+      >
+         <div className="w-3/4 flex flex-col gap-1 text-sm text-white">
+            <p>{quantity} {type}</p>
+            <h1>Rp. {formatToRupiah(price)}</h1>
+         </div>
+         <img
+            className="w-10"
+            src={image} alt={type}
+         />
+      </div>
    )
 }
