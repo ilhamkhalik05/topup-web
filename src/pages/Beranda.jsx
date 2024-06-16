@@ -1,30 +1,15 @@
 import { sales } from "../lib/placeholder-data";
 import { products } from "../lib/products";
 import { FaFire, FaBolt } from "react-icons/fa6";
-import { TbDeviceGamepad2 } from "react-icons/tb";
 import Banner from "../components/Banner";
 import Section from '../components/Section'
 import CardList from "../components/CardList";
 import Countdown from "../components/Countdown";
 import RootLayout from "../RootLayout";
 import Container from "../components/Container";
-import { useState } from "react";
+import SectionTab from "../components/SectionTab";
 
 export default function Beranda() {
-   const [section, setSection] = useState('games')
-   const activeSection = "bg-yellow-400 text-white"
-   function setGame() {
-      setSection('games')
-   }
-
-   function setVoucher() {
-      setSection('voucher')
-   }
-
-   function setEntertainment() {
-      setSection('entertainment')
-   }
-
    return (
       <RootLayout>
          <Container>
@@ -49,34 +34,8 @@ export default function Beranda() {
                   <CardList items={products} type='popular' />
                </Section>
 
-               <Section id="games">
-                  <header className="flex justify-between items-center text-zinc-900 text-xl font-semibold mb-5 dark:text-zinc-50">
-                     <div className="flex items-center gap-2">
-                        <TbDeviceGamepad2 className="-skew-x-6 text-teal-600 text-2xl dark:text-teal-300" />
-                        <h1 className="text-md lg:text-lg border-b-2 border-red-500 dark:border-yellow-200">Games</h1>
-                     </div>
-                     <div className="flex items-center gap-1 text-sm">
-                        <div
-                           className={`${section === 'games' ? activeSection : 'bg-transparent border border-zinc-600'} cursor-pointer px-5 py-2 text-white rounded-full`}
-                           onClick={() => setGame()}
-                        >
-                           Games
-                        </div>
-                        <div
-                           className={`${section === 'voucher' ? activeSection : 'bg-transparent border border-zinc-600'} cursor-pointer px-5 py-2 text-white rounded-full`}
-                           onClick={() => setVoucher()}
-                        >
-                           Voucher
-                        </div>
-                        <div
-                           className={`${section === 'entertainment' ? activeSection : 'bg-transparent border border-zinc-600'} cursor-pointer px-5 py-2 text-white rounded-full`}
-                           onClick={() => setEntertainment()}
-                        >
-                           Entertainment
-                        </div>
-                     </div>
-                  </header>
-                  <CardList items={products} type='games' />
+               <Section>
+                  <SectionTab />
                </Section>
             </div>
          </Container>

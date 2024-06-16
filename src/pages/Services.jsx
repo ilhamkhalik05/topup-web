@@ -31,7 +31,7 @@ export default function Services() {
                         <Link className="px-3 py-1 rounded-full bg-transparent border-2 border-solid border-zinc-500 dark:border-zinc-50 text-zinc-900 dark:text-white">Pulsa</Link>
                         <Link className="px-3 py-1 rounded-full bg-transparent border-2 border-solid border-zinc-500 dark:border-zinc-50 text-zinc-900 dark:text-white">Voucher</Link>
                     </div>
-                    <CardList items={products} type='layanan' />
+                    <CardList items={products} type='games' />
                 </Section>
 
                 <Section>

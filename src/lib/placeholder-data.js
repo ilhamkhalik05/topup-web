@@ -75,3 +75,50 @@ export const transactions = [
    }
 ]
 
+export const voucher = [
+   {
+      id: 1,
+      title: 'Steam Wallet',
+      slug: 'steam-wallet',
+      provider: 'Valve',
+      image: "https://www.lumosdiamond.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F49fdb2f7-41d0-4daa-b115-d75717eaa6f2.webp&w=1920&q=75"
+   },
+   {
+      id: 2,
+      title: 'Playstation (PSN Gift Card)',
+      slug: 'playstation-gift-card',
+      provider: 'Sony interactive Entertainment',
+      image: "https://www.lumosdiamond.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Fa7f40e94-cea2-4f5f-8d07-c3ce5064f2e0.webp&w=1920&q=75"
+   },
+   {
+      id: 3,
+      title: 'Google Play',
+      slug: 'google-play',
+      provider: 'Google LLC',
+      image: "https://www.lumosdiamond.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Fd28ac44e-a141-47ca-ae84-625c0172bef1.webp&w=1920&q=75"
+   }
+]
+
+export const entertainment = [
+   {
+      id: 1,
+      title: 'Steam Wallet',
+      slug: 'steam-wallet',
+      provider: 'Valve',
+      image: "https://www.lumosdiamond.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F49fdb2f7-41d0-4daa-b115-d75717eaa6f2.webp&w=1920&q=75"
+   },
+   {
+      id: 2,
+      title: 'Playstation (PSN Gift Card)',
+      slug: 'playstation-gift-card',
+      provider: 'Sony interactive Entertainment',
+      image: "https://www.lumosdiamond.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Fa7f40e94-cea2-4f5f-8d07-c3ce5064f2e0.webp&w=1920&q=75"
+   },
+   {
+      id: 3,
+      title: 'Google Play',
+      slug: 'google-play',
+      provider: 'Google LLC',
+      image: "https://www.lumosdiamond.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Fd28ac44e-a141-47ca-ae84-625c0172bef1.webp&w=1920&q=75"
+   }
+]

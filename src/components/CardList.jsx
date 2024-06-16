@@ -1,7 +1,7 @@
 import { formatToRupiah, getPriceSavings } from "../lib/utils"
 import { Link } from "react-router-dom"
-import logo from "../assets/logo.webp"
-import fire from "../assets/fire.svg"
+import logo from "../assets/webp/logo.webp"
+import fire from "../assets/svg/fire.svg"
 import Marquee from "react-fast-marquee"
 import { diamond } from "./Assets"
 
@@ -14,9 +14,6 @@ export default function CardList({ items, type }) {
                className="overflow-hidden rounded-md"
                pauseOnHover={true}
                speed={100}
-               // gradient={true}
-               // gradientColor={"rgb(39 39 42)"}
-               // gradientWidth={50}
             >
                <div className="grid grid-cols-4 gap-3 mx-2 rounded-xl">
                   {items.map((item) => (
@@ -70,25 +67,25 @@ export default function CardList({ items, type }) {
             </div>
          )
 
-      case 'layanan':
-         return (
-            <Marquee
-               className="overflow-hidden"
-               speed={100}
-               pauseOnHover={true}
-               gradient={true}
-               gradientColor={"rgb(24 24 27)"}
-               gradientWidth={50}
-            >
-               <div className="grid grid-cols-8">
-                  {items.map((game) => {
-                     return (
-                        <Layanancard key={game.id} title={game.title} image={game.image} />
-                     )
-                  })}
-               </div>
-            </Marquee>
-         )
+      // case 'layanan':
+      //    return (
+      //       <Marquee
+      //          className="overflow-hidden"
+      //          speed={100}
+      //          pauseOnHover={true}
+      //          gradient={true}
+      //          gradientColor={"rgb(24 24 27)"}
+      //          gradientWidth={50}
+      //       >
+      //          <div className="grid grid-cols-8">
+      //             {items.map((game) => {
+      //                return (
+      //                   <Layanancard key={game.id} title={game.title} image={game.image} />
+      //                )
+      //             })}
+      //          </div>
+      //       </Marquee>
+      //    )
 
       case 'products':
          const image = items.type_image
@@ -104,6 +101,23 @@ export default function CardList({ items, type }) {
                         quantity={item.quantity}
                         image={image}
                         type={type}
+                     />
+                  )
+               })}
+            </div>
+         )
+
+      case 'voucher':
+         return (
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+               {items.map((game) => {
+                  return (
+                     <VoucherCard
+                        key={game.id}
+                        title={game.title}
+                        provider={game.provider}
+                        slug={game.slug}
+                        image={game.image}
                      />
                   )
                })}
@@ -213,30 +227,30 @@ const GameCard = ({ title, developer, image }) => {
    )
 }
 
-const Layanancard = ({ title, image }) => {
-   return (
-      <a
-         href="/"
-         className="group card relative cursor-pointer h-52 lg:h-[260px] w-auto">
-         <img
-            src={image}
-            alt={title}
-            className="object-cover object-center w-full h-full brightness-75 group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
-         />
-         <div className="flex flex-col items-center justify-center gap-5 w-full text-zinc-50 absolute inset-0 py-5 px-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 ease-in-out">
-            <img
-               src={logo}
-               alt="logo"
-               width={140}
-               className="transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"
-            />
-            <h1 className="font-bold text-md text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out">
-               {title}
-            </h1>
-         </div>
-      </a>
-   )
-}
+// const Layanancard = ({ title, image }) => {
+//    return (
+//       <a
+//          href="/"
+//          className="group card relative cursor-pointer h-52 lg:h-[260px] w-auto">
+//          <img
+//             src={image}
+//             alt={title}
+//             className="object-cover object-center w-full h-full brightness-75 group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
+//          />
+//          <div className="flex flex-col items-center justify-center gap-5 w-full text-zinc-50 absolute inset-0 py-5 px-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 ease-in-out">
+//             <img
+//                src={logo}
+//                alt="logo"
+//                width={140}
+//                className="transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"
+//             />
+//             <h1 className="font-bold text-md text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out">
+//                {title}
+//             </h1>
+//          </div>
+//       </a>
+//    )
+// }
 
 const ProductCard = ({ price, quantity, image, type }) => {
    return (
@@ -252,5 +266,28 @@ const ProductCard = ({ price, quantity, image, type }) => {
             src={image} alt={type}
          />
       </div>
+   )
+}
+
+
+const VoucherCard = ({ title, provider, image }) => {
+   return (
+      <Link
+         to="/"
+         className="group relative cursor-pointer rounded-xl h-52 lg:h-64 hover:ring-2 ring-primary transition-all ease-in-out duration-150">
+         <img
+            src={image}
+            alt={title}
+            className="object-cover object-center w-full h-full rounded-xl brightness-90 transition"
+         />
+         <div className="flex flex-col items-start justify-end px-3 py-5 w-full bg-gradient-to-b from-transparent from-5% to-black text-zinc-50 rounded-xl absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity">
+            <h1 className="font-bold text-lg line-clamp-2 transform translate-y-full group-hover:translate-y-0 transition-transform">
+               {title}
+            </h1>
+            <p className="text-sm text-gray-300 transform translate-y-full group-hover:translate-y-0 transition-transform">
+               {provider}
+            </p>
+         </div>
+      </Link>
    )
 }

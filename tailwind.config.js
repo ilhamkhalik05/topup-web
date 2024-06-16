@@ -36,8 +36,8 @@ export default {
         center: true,
       },
       backgroundImage: {
-        'auth-img': "url('/src/assets/auth-img.webp')",
-        'card': "url('/src/assets/card.webp')",
+        'auth-img': "url('/src/assets/webp/auth-img.webp')",
+        'card': "url('/src/assets/webp/card.webp')",
         'wavy-footer': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDQwIDMyMCI+PHBhdGggZmlsbD0iIzAwOTlmZiIgZmlsbC1vcGFjaXR5PSIxIiBkPSJNM')",
       },
       ringWidth: {
