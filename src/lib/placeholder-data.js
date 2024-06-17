@@ -122,3 +122,42 @@ export const entertainment = [
       image: "https://www.lumosdiamond.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Fd28ac44e-a141-47ca-ae84-625c0172bef1.webp&w=1920&q=75"
    }
 ]
+
+export const payments = [
+   {
+      id: 1,
+      title: 'OVO',
+      type: "E-Wallet",
+      image: "https://cdn.bangjeff.com/f367ae56-ef1d-404d-959b-337e057966be.webp"
+   },
+   {
+      id: 2,
+      title: 'Dana',
+      type: "E-Wallet",
+      image: "https://cdn.bangjeff.com/2fff36f4-aeb5-47ba-8d7d-48362fec4529.webp"
+   },
+   {
+      id: 3,
+      title: 'GoPay',
+      type: "E-Wallet",
+      image: "https://cdn.bangjeff.com/5a3ead88-914d-46f1-8969-f5a73443a0fa.webp"
+   },
+   {
+      id: 4,
+      title: 'Bank BNI',
+      type: "Virtual Account",
+      image: "https://cdn.bangjeff.com/7e064360-0b28-4ab7-ba4a-070e5b44910c.webp"
+   },
+   {
+      id: 5,
+      title: 'SinarMas',
+      type: "Virtual Account",
+      image: "https://cdn.bangjeff.com/990d6cd0-be3d-4004-afbf-cb268c123a7f.webp"
+   },
+   {
+      id: 6,
+      title: 'Bank BRI',
+      type: "Virtual Account",
+      image: "https://cdn.bangjeff.com/d839dcdf-1066-4308-a573-f8945f06639b.webp"
+   },
+]

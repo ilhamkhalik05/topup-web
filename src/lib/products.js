@@ -7,7 +7,7 @@ export const products = [
       slug: 'mobile-legends',
       image: 'https://res.cloudinary.com/dpqm2fjxz/image/upload/v1713885842/demowebtopupku/87379964-51d0-4baa-a8d6-69ec2aebee85_4_mbpd6y.webp',
       type: "Diamond",
-      type_image: "https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F5f67a939-49a8-486a-a3ba-2bf25b5e88bf.webp&w=48&q=75",
+      type_image: "https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Fc899cd64-bfde-430f-ad34-8f28ae241558.png&w=640&q=75",
       banner_image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a44778ea-3457-40e0-8979-b7e3685d23d0/df6au46-d5f25a23-7e7d-499b-9690-822ba5fd6d18.png/v1/fill/w_1280,h_720,q_80,strp/ling_street_punk_8k_wallpaper_by_newjer53_df6au46-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvYTQ0Nzc4ZWEtMzQ1Ny00MGUwLTg5NzktYjdlMzY4NWQyM2QwXC9kZjZhdTQ2LWQ1ZjI1YTIzLTdlN2QtNDk5Yi05NjkwLTgyMmJhNWZkNmQxOC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.EbLsDaRIHZh7u4WmrbbVoQ9_nd9EbqCx86nRxpk6fHE",
       items: [
          {

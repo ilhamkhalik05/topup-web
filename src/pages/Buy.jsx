@@ -6,17 +6,28 @@ import { FaRegThumbsUp } from "react-icons/fa6";
 import { IoWalletOutline, IoPricetagsOutline } from "react-icons/io5";
 import { BsExclamationCircle } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
-import Container from '../components/Container'
-import Section from '../components/Section'
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { RiCoupon3Fill } from "react-icons/ri";
 import CardList from '../components/CardList'
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { FaHeadphonesAlt } from "react-icons/fa";
+import { payments } from "../lib/placeholder-data";
 
 export default function Buy() {
    const [isShowMore, setIsShowMore] = useState(true)
    const { slug } = useParams()
    const product = products.find((game) => game.slug === slug)
+   const eWalletPayments = payments.filter((payment) => payment.type === "E-Wallet")
+   const virtualAccountPayments = payments.filter((payment) => payment.type === "Virtual Account")
 
    return (
       <RootLayout>
+         <div className="z-50 fixed bottom-0 right-0 px-3 py-1 bg-yellow-400 text-white border-0 rounded-tl-md">
+            <div className="flex items-center gap-3">
+               <FaHeadphonesAlt />
+               Customer Service
+            </div>
+         </div>
          <div className="flex flex-col h-[90vh] rounded-md shadow-lg mt-5 lg:m-0">
             <img
                className="h-56 md:h-72 lg:h-96 object-cover object-center rounded-t-md brightness-50"
@@ -75,29 +86,92 @@ export default function Buy() {
             </div>
          </div>
 
-         <div className="flex gap-3 w-full bg-neutral-950 text-neutral-50 mt-10 p-5">
+         <div className="flex flex-col gap-3 lg:flex-row w-full bg-neutral-950 text-neutral-50 mt-20 p-5">
             <main className="flex flex-col w-full gap-3">
-               <div className="rounded-md p-5 bg-neutral-900 flex flex-col gap-1">
-                  <h1 className="text-xl font-semibold">Pilih Paket</h1>
+               <Box no={"1"} title={'Pilih Produk'}>
                   <CardList items={product} type='products' />
-               </div>
+               </Box>
             </main>
-            <aside className="flex flex-col w-1/3 gap-3 sticky">
-               <div className="flex flex-col gap-3 rounded-md p-3 bg-neutral-900">
-                  <h1 className="font-semibold text-xl">Masukkan Data</h1>
-                  <div className="flex gap-1">
+            <aside className="flex flex-col w-full gap-3 lg:w-1/3 sticky top-0">
+               <Box no={"2"} title={'Masukan Data Akun'}>
+                  <div className="flex flex-col gap-1 lg:flex-row">
                      <div className="flex flex-col gap-1">
                         <label className="text-md" htmlFor="">User ID</label>
-                        <input className="input input-bordered input-sm text-black" type="text" />
+                        <input className="input input-bordered input-sm text-black focus:ring-2 focus:ring-primary" type="text" />
                      </div>
                      <div className="flex flex-col gap-1">
-                        <label className="text-md" htmlFor="">Zone ID</label>
-                        <input className="input input-bordered input-sm text-black" type="text" />
+                        <label className="text-md" htmlFor="">Server ID</label>
+                        <input className="input input-bordered input-sm text-black focus:ring-2 focus:ring-primary" type="text" />
                      </div>
                   </div>
-               </div>
+               </Box>
+
+               <Box no={"3"} title={'Pilih Metode Pembayaran'}>
+                  <div className="flex flex-col gap-3">
+                     <div className="flex flex-col">
+                        <div className="p-3 flex justify-between items-center bg-zinc-600 rounded-t-md">
+                           <h1 className="font-semibold">E-Wallet</h1>
+                           <IoIosArrowDropdownCircle className="cursor-pointer text-lg" />
+                        </div>
+                        <div className="p-3 flex justify-end bg-zinc-400 rounded-b-md">
+                           <div className="flex gap-2">
+                              {eWalletPayments.map((payment) => (
+                                 <img className="w-12 object-contain" src={payment.image} alt={payment.title} />
+                              ))}
+                           </div>
+                        </div>
+                     </div>
+                     <div className="flex flex-col">
+                        <div className="p-3 flex justify-between items-center bg-zinc-600 rounded-t-md">
+                           <h1 className="font-semibold">Virtual Account</h1>
+                           <IoIosArrowDropdownCircle className="cursor-pointer text-lg" />
+                        </div>
+                        <div className="p-3 flex justify-end bg-zinc-400 rounded-b-md">
+                           <div className="flex gap-2">
+                              {virtualAccountPayments.map((payment) => (
+                                 <img className="w-12 object-contain" src={payment.image} alt={payment.title} />
+                              ))}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </Box>
+               <Box no={"4"} title={'Kode Promo'}>
+                  <div className="flex gap-2 w-full">
+                     <input type="text" placeholder="Masukan kode promo" className="input input-xs w-full text-black rounded-md text-sm placeholder:text-zinc-400 focus:ring focus:ring-yellow-400" />
+                     <button className="btn btn-xs bg-yellow-400 hover:bg-yellow-600 text-white">Pakai Kode</button>
+                  </div>
+                  <button className="btn btn-sm w-full bg-yellow-400 hover:bg-yellow-600 text-white mt-4">
+                     <RiCoupon3Fill />
+                     Lihat Kode Tersedia
+                  </button>
+               </Box>
+
+               <Box className="sticky top-0" no={"5"} title={'Total Pembayaran'}>
+                  <div className="w-full bg-zinc-950 border border-dashed border-zinc-600 flex items-center justify-center text-sm text-zinc-50 p-3 mb-3">
+                     Anda belum memilih produk
+                  </div>
+                  <button className="btn bg-yellow-400 w-full flex items-center gap-2 text-white uppercase  hover:bg-yellow-600">
+                     <FaRegCalendarAlt />
+                     Pesan Sekarang
+                  </button>
+               </Box>
             </aside>
          </div>
       </RootLayout>
+   )
+}
+
+const Box = ({ className = '', no, title, children }) => {
+   return (
+      <div className={`group flex flex-col gap-3 rounded-md bg-neutral-900 ${className}`}>
+         <header className="w-full flex rounded-t-md bg-zinc-600">
+            <div className="bg-yellow-300 text-yellow-800 font-bold rounded-tl-md px-4 py-2 flex items-center justify-center">{no}</div>
+            <h2 className="px-3 py-2 font-[500] text-lg">{title}</h2>
+         </header>
+         <div className="p-5">
+            {children}
+         </div>
+      </div>
    )
 }

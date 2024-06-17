@@ -180,7 +180,7 @@ const PopularCard = ({ title, slug, image, type }) => {
    return (
       <a
          href={`/buy/${slug}`}
-         className="group glass cursor-pointer flex flex-row items-center gap-3 rounded-xl px-3 py-2 bg-card bg-cover bg-center hover:ring-2 hover:ring-primary ease-in-out duration-300 lg:py-3 lg:px-5"
+         className="group glass cursor-pointer flex flex-row items-center gap-3 rounded-xl px-3 py-2 bg-card bg-cover bg-center hover:ring-2 hover:ring-primary transition-all duration-700 lg:py-3 lg:px-5"
       >
          {/* Mobile Image Card */}
          <img
@@ -255,14 +255,14 @@ const GameCard = ({ title, developer, image }) => {
 const ProductCard = ({ price, quantity, image, type }) => {
    return (
       <div
-         className="group cursor-pointer flex gap-10 bg-card bg-cover bg-center p-3 rounded-lg hover:ring-2 ring-primary transition-all ease-in-out"
+         className="group cursor-pointer flex bg-gradient-to-br from-zinc-700 from-40% to-zinc-500 p-2.5 md:p-4 rounded-lg hover:ring-2 ring-primary transition-all ease-in-out"
       >
-         <div className="w-3/4 flex flex-col gap-1 text-sm text-white">
-            <p>{quantity} {type}</p>
+         <div className="w-4/5 flex flex-col gap-1 text-xs md:text-sm text-white">
+            <p className="text-nowrap">{quantity} {type}</p>
             <h1>Rp. {formatToRupiah(price)}</h1>
          </div>
          <img
-            className="w-10"
+            className="object-contain object-center w-8"
             src={image} alt={type}
          />
       </div>

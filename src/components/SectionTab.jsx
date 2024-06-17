@@ -5,7 +5,6 @@ import { voucher } from "../lib/placeholder-data"
 import CardList from "./CardList";
 import Section from "./Section";
 import { TbDeviceGamepad2, TbCards } from "react-icons/tb";
-import { PiPopcorn } from "react-icons/pi"
 import { FaRegCirclePlay } from "react-icons/fa6";
 
 export default function SectionTab() {
@@ -99,7 +98,7 @@ const TabPills = ({ section }) => {
    const dispatch = useDispatch()
    const activeSection = "bg-yellow-400 text-white border-none hover:bg-yellow-400"
    return (
-      <div className="flex items-center gap-1 text-sm mb-5">
+      <div className="flex items-center flex-wrap gap-x-1 gap-y-2 text-sm mb-5">
          <div
             className={`${section === 'all' ? activeSection : 'bg-transparent border border-zinc-600 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
             onClick={() => dispatch(setSection('all'))}
