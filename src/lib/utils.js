@@ -11,12 +11,3 @@ export const formatToRupiah = (amount) => {
    const rupiahAmount = amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
    return rupiahAmount;
 }
-
-export const getStockInPercent = (stock) => {
-   if (typeof stock !== 'number') {
-      throw new TypeError("Stok harus berupa angka");
-   }
-
-   const stockInPercent = (stock / 100) * 100
-   return `${stockInPercent}%`
-}

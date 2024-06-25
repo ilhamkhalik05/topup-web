@@ -3,7 +3,7 @@ import Beranda from "./pages/Beranda";
 import Auth from "./pages/Auth";
 import Services from "./pages/Services";
 import TransactionCheck from "./pages/TransactionCheck";
-import Buy from "./pages/Buy"
+import Order from "./pages/Order"
 
 export default function App() {
    return (
@@ -14,7 +14,7 @@ export default function App() {
             <Route element={<Auth currentPage="signup" />} path={'/signup'} />
             <Route element={<Services />} path={'/services'} />
             <Route element={<TransactionCheck />} path={'/transaction-check'} />
-            <Route element={<Buy />} path={'/buy/:slug'} />
+            <Route element={<Order />} path={'/order/:slug'} />
          </Routes>
       </BrowserRouter>
    )

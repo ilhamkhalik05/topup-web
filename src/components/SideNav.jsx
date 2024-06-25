@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { closeMobileNav } from "../app/features/mobile-nav/mobile-nav-slice";
-import { FaHome, FaList, FaMoon, FaSearch, FaSun, FaUser } from "react-icons/fa";
+import { FaMoon, FaSun, FaUser } from "react-icons/fa";
 import { setDarkMode, resetDarkMode } from "../app/features/dark-mode/dark-mode-slice";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 import { logo } from './Assets'
 
 export default function SideNav({ links }) {
@@ -45,13 +44,13 @@ export default function SideNav({ links }) {
                      <div className={`flex flex-col items-start gap-2`}>
                         {links.map((link, index) => {
                            return (
-                              <Link
+                              <a
                                  className={`flex items-center gap-3 ${pathname === link.path ? 'text-yellow-400 dark:text-yellow-200' : 'text-zinc-800 dark:text-zinc-200'} hover:text-yellow-400 dark:hover:text-yellow-200`}
                                  key={index}
-                                 to={link.path}>
+                                 href={link.path}>
                                  {link.icon}
                                  {link.label}
-                              </Link>
+                              </a>
                            )
                         })}
                      </div>
@@ -72,18 +71,18 @@ export default function SideNav({ links }) {
                               Dark Mode
                            </button>
                         }
-                        <Link
+                        <a
                            className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200"
-                           to="/signin">
+                           href="/signin">
                            <FaArrowRightFromBracket />
                            Masuk
-                        </Link>
-                        <Link
+                        </a>
+                        <a
                            className="flex items-center gap-3 text-zinc-800 hover:text-yellow-400 dark:text-zinc-200 dark:hover:text-yellow-200"
-                           to="/signup">
+                           href="/signup">
                            <FaUser />
                            Daftar
-                        </Link>
+                        </a>
                      </div>
                   </div>
                </div>

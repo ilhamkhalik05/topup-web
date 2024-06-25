@@ -100,25 +100,25 @@ const TabPills = ({ section }) => {
    return (
       <div className="flex items-center flex-wrap gap-x-1 gap-y-2 text-sm mb-5">
          <div
-            className={`${section === 'all' ? activeSection : 'bg-transparent border border-zinc-600 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
+            className={`${section === 'all' ? activeSection : 'bg-transparent border border-zinc-700 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
             onClick={() => dispatch(setSection('all'))}
          >
             Semua
          </div>
          <div
-            className={`${section === 'games' ? activeSection : 'bg-transparent border border-zinc-600 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
+            className={`${section === 'games' ? activeSection : 'bg-transparent border border-zinc-700 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
             onClick={() => dispatch(setSection('games'))}
          >
             Games
          </div>
          <div
-            className={`${section === 'voucher' ? activeSection : 'bg-transparent border border-zinc-600 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
+            className={`${section === 'voucher' ? activeSection : 'bg-transparent border border-zinc-700 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
             onClick={() => dispatch(setSection('voucher'))}
          >
             Voucher
          </div>
          <div
-            className={`${section === 'entertainment' ? activeSection : 'bg-transparent border border-zinc-600 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
+            className={`${section === 'entertainment' ? activeSection : 'bg-transparent border border-zinc-700 text-zinc-950 hover:bg-zinc-700 dark:text-white'} btn btn-sm cursor-pointer px-5 py-2 rounded-full`}
             onClick={() => dispatch(setSection('entertainment'))}
          >
             Entertainment

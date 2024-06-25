@@ -2,13 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSearchModal } from '../app/features/search-modal/search-modal-slice';
 import { FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { products } from '../lib/products';
 
 const SearchModal = () => {
    const dispatch = useDispatch();
    const isSearchModalShow = useSelector(state => state.searchModal.show);
-   const suggestions = products.slice(0, 4); // Popular data for suggestion
+   const suggestions = products.slice(0, 4);
 
    if (!isSearchModalShow) return null;
 
@@ -41,9 +40,9 @@ const SearchModal = () => {
                <h1 className="text-md">Popular</h1>
                <div className="flex flex-col gap-3 w-full max-h-80 overflow-y-auto">
                   {suggestions.map((suggestion) => (
-                     <Link
+                     <a
                         key={suggestion.id}
-                        to="/"
+                        href="/"
                         className="group card cursor-pointer flex flex-row items-center gap-3 rounded-lg px-5 py-3 bg-gradient-to-br from-neutral-800 to-neutral-950 hover:-translate-y-1 hover:bg-neutral-900 duration-500 ease-in-out"
                      >
                         <img
@@ -57,7 +56,7 @@ const SearchModal = () => {
                            <h1 className="font-bold">{suggestion.title}</h1>
                            <h2 className="text-sm">{suggestion.tipe}</h2>
                         </div>
-                     </Link>
+                     </a>
                   ))}
                </div>
             </div>

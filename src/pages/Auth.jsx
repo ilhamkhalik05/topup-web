@@ -7,7 +7,7 @@ import { FaHome } from "react-icons/fa"
 export default function Auth({ currentPage }) {
    return (
       <>
-         {/* Mobile Home Redirect */}
+         {/* Home Redirect Mobile */}
          <div
             className="tooltip tooltip-warning z-50 glass block lg:hidden fixed right-7 bottom-5 bg-zinc-100 rounded-md p-3 shadow-xl shadow-gray-950 text-lg"
             data-tip="Ke Beranda"
@@ -17,13 +17,14 @@ export default function Auth({ currentPage }) {
             </Link>
          </div>
 
-         {/* Desktop Home Redirect */}
+         {/* Home Redirect Desktop*/}
          <div className="hidden lg:block fixed left-3 top-6">
             <Link className='px-4 py-2 rounded-lg bg-transparent text-gray-400 text-md flex items-center gap-1 italic hover:text-gray-300 ease-in-out duration-300' to={'/'}>
                <FaAnglesLeft className='-skew-x-12' />
                Back to Home
             </Link>
          </div>
+         
          <div className="flex flex-row w-full h-screen">
             {/* Side Pic */}
             <div className="hidden lg:block w-1/2">

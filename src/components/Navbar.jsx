@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaToggleOff, FaToggleOn, FaSearch, FaHome, FaList, FaMoon } from "react-icons/fa";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { FaArrowRightFromBracket, FaRegUser, FaBars } from "react-icons/fa6";
+import { BsCurrencyExchange } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { toggleDarkMode } from "../app/features/dark-mode/dark-mode-slice";
 import { showSearchModal } from "../app/features/search-modal/search-modal-slice";
@@ -30,7 +31,7 @@ export default function Navbar() {
       {
          label: "Cek Transaksi",
          path: "/transaction-check",
-         icon: <FaSearch />
+         icon: <BsCurrencyExchange />
       },
    ]
 
@@ -64,9 +65,10 @@ const NavStart = ({ pathname, links }) => {
             {links.map((link, index) => {
                return (
                   <Link
-                     className={`${pathname === link.path ? active : 'hover:text-yellow-600 dark:hover:text-yellow-200'} font-medium`}
+                     className={`${pathname === link.path ? active : 'hover:text-yellow-600 dark:hover:text-yellow-200'} font-medium flex items-center gap-2`}
                      key={index}
                      to={link.path}>
+                     {link.icon}
                      {link.label}
                   </Link>
                )
@@ -89,7 +91,7 @@ const NavEnd = ({ darkMode, dispatch }) => (
          ? <FiSun className="hidden lg:block cursor-pointer text-2xl font-bold" onClick={() => dispatch(toggleDarkMode())} />
          : <FiMoon className="hidden lg:block cursor-pointer text-2xl font-bold" onClick={() => dispatch(toggleDarkMode())} />
       }
-      
+
       <NavAuth />
    </div>
 );

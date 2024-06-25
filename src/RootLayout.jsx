@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
 
    return (
       <div
-         className="bg-zinc-50 dark:bg-gradient-to-br from-zinc-900 to-zinc-800 transition-all duration-500">
+         className="bg-zinc-50 dark:bg-gradient-to-br from-neutral-950 from-20% to-neutral-900 transition-all duration-500">
          <Navbar />
          {children}
          <Footer />

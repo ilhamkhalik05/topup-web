@@ -7,7 +7,7 @@ import { diamond } from "./Assets"
 
 export default function CardList({ items, type }) {
    switch (type) {
-      //Flash Sale List
+      // Flash Sale List
       case 'sales':
          return (
             <Marquee
@@ -67,36 +67,17 @@ export default function CardList({ items, type }) {
             </div>
          )
 
-      // case 'layanan':
-      //    return (
-      //       <Marquee
-      //          className="overflow-hidden"
-      //          speed={100}
-      //          pauseOnHover={true}
-      //          gradient={true}
-      //          gradientColor={"rgb(24 24 27)"}
-      //          gradientWidth={50}
-      //       >
-      //          <div className="grid grid-cols-8">
-      //             {items.map((game) => {
-      //                return (
-      //                   <Layanancard key={game.id} title={game.title} image={game.image} />
-      //                )
-      //             })}
-      //          </div>
-      //       </Marquee>
-      //    )
-
       case 'products':
          const image = items.type_image
          const type = items.type
          const products = items.items
          return (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-               {products.map((item) => {
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+               {products.map((item, index) => {
                   return (
                      <ProductCard
                         key={item.id}
+                        index={index}
                         price={item.price}
                         quantity={item.quantity}
                         image={image}
@@ -179,14 +160,14 @@ const SaleCard = ({ title, price, sale, quantity, type, stok }) => {
 const PopularCard = ({ title, slug, image, type }) => {
    return (
       <a
-         href={`/buy/${slug}`}
+         href={`/order/${slug}`}
          className="group glass cursor-pointer flex flex-row items-center gap-3 rounded-xl px-3 py-2 bg-card bg-cover bg-center hover:ring-2 hover:ring-primary transition-all duration-700 lg:py-3 lg:px-5"
       >
          {/* Mobile Image Card */}
          <img
             src={image}
             alt={title}
-            width={65}
+            width={60}
             className="block lg:hidden rounded-md shadow-lg shadow-black"
          />
          {/* Desktop Image Card */}
@@ -209,7 +190,7 @@ const GameCard = ({ title, developer, image }) => {
    return (
       <Link
          to="/"
-         className="group relative cursor-pointer rounded-xl h-52 lg:h-64 hover:ring-2 ring-primary transition-all ease-in-out duration-150">
+         className="group relative cursor-pointer rounded-xl h-52 lg:h-64 hover:ring-2 ring-primary ztransition-all ease-in-out duration-150">
          <img
             src={image}
             alt={title}
@@ -227,37 +208,16 @@ const GameCard = ({ title, developer, image }) => {
    )
 }
 
-// const Layanancard = ({ title, image }) => {
-//    return (
-//       <a
-//          href="/"
-//          className="group card relative cursor-pointer h-52 lg:h-[260px] w-auto">
-//          <img
-//             src={image}
-//             alt={title}
-//             className="object-cover object-center w-full h-full brightness-75 group-hover:blur-sm group-hover:brightness-50 group-hover:shadow-xl shadow-yellow-300 transition ease-in duration-300"
-//          />
-//          <div className="flex flex-col items-center justify-center gap-5 w-full text-zinc-50 absolute inset-0 py-5 px-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 ease-in-out">
-//             <img
-//                src={logo}
-//                alt="logo"
-//                width={140}
-//                className="transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"
-//             />
-//             <h1 className="font-bold text-md text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out">
-//                {title}
-//             </h1>
-//          </div>
-//       </a>
-//    )
-// }
+const ProductCard = ({ index, price, quantity, image, type }) => {
+   const baseClass = 'group cursor-pointer text-zinc-200 flex p-2.5 md:p-4 rounded-2xl transition-all ease-in-out'
+   const activeCard = index === 0
+   const activeClass = "bg-zinc-600 font-bold opacity-100 ring ring-2 ring-offset-2 ring-offset-zinc-800 ring-yellow-300"
 
-const ProductCard = ({ price, quantity, image, type }) => {
    return (
       <div
-         className="group cursor-pointer flex bg-gradient-to-br from-zinc-700 from-40% to-zinc-500 p-2.5 md:p-4 rounded-lg hover:ring-2 ring-primary transition-all ease-in-out"
+         className={`${activeCard ? activeClass : "bg-zinc-700 hover:ring-2 ring-blue-300 ring-offset-2 ring-offset-zinc-800 opacity-60"} ${baseClass}`}
       >
-         <div className="w-4/5 flex flex-col gap-1 text-xs md:text-sm text-white">
+         <div className="w-4/5 flex flex-col gap-1 text-xs md:text-sm">
             <p className="text-nowrap">{quantity} {type}</p>
             <h1>Rp. {formatToRupiah(price)}</h1>
          </div>
