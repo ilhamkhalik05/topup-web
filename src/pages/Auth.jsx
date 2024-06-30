@@ -1,6 +1,7 @@
+import { SignInForm, SignUpForm } from '../components/ui/form'
+import { authSideImg } from '../components/assets'
 import { Link } from 'react-router-dom'
-import { authSideImg } from '../components/Assets'
-import { SignInForm, SignUpForm } from '../components/Form'
+
 import { FaAnglesLeft } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa"
 
@@ -16,6 +17,7 @@ export default function Auth({ currentPage }) {
                <FaHome />
             </Link>
          </div>
+         {/* Home Redirect Mobile */}
 
          {/* Home Redirect Desktop*/}
          <div className="hidden lg:block fixed left-3 top-6">
@@ -24,6 +26,7 @@ export default function Auth({ currentPage }) {
                Back to Home
             </Link>
          </div>
+         {/* Home Redirect Desktop*/}
          
          <div className="flex flex-row w-full h-screen">
             {/* Side Pic */}
@@ -55,12 +58,12 @@ const ToggleForm = ({ currentPage }) => {
    return (
       <div className="mb-7 flex items-center w-full shadow-xl shadow-slate-950 font-semibold">
          <Link
-            className={`${currentPage === 'signin' ? 'bg-yellow-400 text-zinc-50' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-s-xl`}
+            className={`${currentPage === 'signin' ? 'bg-yellow-300 text-light-ui' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-s-xl`}
             to="/signin">
             Masuk
          </Link>
          <Link
-            className={`${currentPage === 'signup' ? 'bg-yellow-400 text-zinc-50' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-e-xl`}
+            className={`${currentPage === 'signup' ? 'bg-yellow-300 text-light-ui' : 'bg-slate-800 text-slate-500'} p-2 w-full text-center rounded-e-xl`}
             to="/signup">
             Daftar
          </Link>

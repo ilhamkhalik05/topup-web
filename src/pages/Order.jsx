@@ -1,6 +1,6 @@
-import RootLayout from "../RootLayout"
-import CardList from '../components/CardList'
-import PromoModal from "../components/PromoModal";
+import RootLayout from "../root-layout"
+import CardList from '../components/card-list'
+import { PromoModal } from "../components/ui/modal";
 import { useParams } from "react-router"
 import { useState } from "react";
 import { products } from "../lib/products"
@@ -24,6 +24,7 @@ export default function Order() {
    const [isShowMore, setIsShowMore] = useState(false)
    const [isPromoModalShow, setIsPromoModalShow] = useState(false)
    const [isPaymentShow, setIsPaymentShow] = useState(false)
+   const [isVirtualAccountShow, setIsVirtualAccountShow] = useState(false)
    const { slug } = useParams()
    const product = products.find((game) => game.slug === slug)
    const eWalletPayments = payments.filter((payment) => payment.type === "E-Wallet")
@@ -59,7 +60,7 @@ export default function Order() {
             />
             {/* Banner Full Image */}
 
-            <div className="z-10 h-full text-zinc-100 bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-900 dark:to-zinc-950">
+            <div className="z-10 h-full text-zinc-100 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-950">
                <div className="flex flex-col items-start -mt-20 md:flex-row">
                   {/* Floating Image */}
                   <div className="flex justify-center w-full md:w-1/3 md:justify-end">
@@ -108,7 +109,7 @@ export default function Order() {
                            }
                         </div>
                         <button
-                           className="cursor-pointer text-sm text-yellow-300"
+                           className="cursor-pointer text-sm text-primary-dark font-semibold dark:text-primary dark:font-normal"
                            onClick={() => setIsShowMore(!isShowMore)}
                         >
                            {isShowMore ? "Show less..." : "Show more..."}
@@ -289,7 +290,7 @@ export default function Order() {
                                  <FaStar />
                               </div>
                            </div>
-                           <button type="submit" className="btn btn-sm bg-yellow-400 hover:bg-yellow-300 text-white w-full">Simpan</button>
+                           <button type="submit" className="btn btn-sm border-0 bg-yellow-400 hover:bg-yellow-300 text-white w-full">Simpan</button>
                         </form>
                      </div>
                   </Box>
@@ -301,15 +302,15 @@ export default function Order() {
             <form className="flex flex-col w-full gap-5">
                <Box no={"1"} title={'Silahkan Pilih Produk'}>
                   <div className="flex flex-wrap gap-x-1 gap-y-2 items-center mb-5">
-                     <div className="flex items-center justify-center gap-1 btn btn-xs px-5 bg-yellow-200 font-bold text-black rounded-full border-0 hover:bg-yellow-200">
+                     <div className="flex items-center justify-center gap-1 btn btn-xs border-0 px-5 bg-yellow-200 font-bold text-black rounded-full hover:bg-yellow-200">
                         <LuMedal />
                         Best Sale
                      </div>
-                     <div className="flex items-center justify-center gap-1 btn btn-xs px-5 bg-transparent font-bold text-zinc-300 rounded-full border border-zinc-100 hover:bg-zinc-500">
+                     <div className="flex items-center justify-center gap-1 btn btn-xs px-5 bg-transparent font-bold text-zinc-300 rounded-full hover:bg-zinc-500">
                         <IoMdFlash />
                         Flash Sale
                      </div>
-                     <div className="flex items-center justify-center gap-1 btn btn-xs px-5 bg-transparent font-bold text-zinc-300 rounded-full border border-zinc-100 hover:bg-zinc-500">
+                     <div className="flex items-center justify-center gap-1 btn btn-xs px-5 bg-transparent font-bold text-zinc-300 rounded-full hover:bg-zinc-500">
                         <GiFire />
                         Hot
                      </div>
@@ -360,50 +361,22 @@ export default function Order() {
                         {isPaymentShow
                            ? (
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5 px-5 py-7 bg-zinc-900 rounded-b-2xl animate-slideDown">
-                                 <div className="flex flex-col cursor-pointer shadow-inner p-3 bg-gradient-to-br from-zinc-300 from-10% via-zinc-100 to-zinc-200 ring-2 ring-offset-2 ring-offset-zinc-800 ring-zinc-300 rounded-2xl">
-                                    <div className="flex flex-col text-black">
-                                       <h1 className="font-semibold text-md">Rp.159.000</h1>
-                                       <p className="italic text-xs">Biaya layanan up to 2.5%</p>
-                                    </div>
-                                    <hr className="border border-black mt-3 mb-2" />
-                                    <div className="flex items-center justify-between">
-                                       <p className="text-gray-800 text-xs font-bold">E-Wallet</p>
-                                       <img className="w-10 object-contain" src="https://cdn.bangjeff.com/f367ae56-ef1d-404d-959b-337e057966be.webp" alt="Ovo" />
-                                    </div>
-                                 </div>
-                                 <div className="flex flex-col cursor-pointer shadow-inner p-3 bg-zinc-300 opacity-65 ring-2 ring-offset-2 ring-offset-zinc-800 ring-zinc-300 rounded-2xl">
-                                    <div className="flex flex-col text-black">
-                                       <h1 className="font-semibold text-md">Rp.159.000</h1>
-                                       <p className="italic text-xs">Biaya layanan up to 2.5%</p>
-                                    </div>
-                                    <hr className="border border-black mt-3 mb-2" />
-                                    <div className="flex items-center justify-between">
-                                       <p className="text-gray-800 text-xs font-bold">E-Wallet</p>
-                                       <img className="w-10 object-contain" src="https://cdn.bangjeff.com/f367ae56-ef1d-404d-959b-337e057966be.webp" alt="Ovo" />
-                                    </div>
-                                 </div>
-                                 <div className="flex flex-col cursor-pointer shadow-inner p-3 bg-zinc-300 opacity-65 ring-2 ring-offset-2 ring-offset-zinc-800 ring-zinc-300 rounded-2xl">
-                                    <div className="flex flex-col text-black">
-                                       <h1 className="font-semibold text-md">Rp.159.000</h1>
-                                       <p className="italic text-xs">Biaya layanan up to 2.5%</p>
-                                    </div>
-                                    <hr className="border border-black mt-3 mb-2" />
-                                    <div className="flex items-center justify-between">
-                                       <p className="text-gray-800 text-xs font-bold">E-Wallet</p>
-                                       <img className="w-10 object-contain" src="https://cdn.bangjeff.com/f367ae56-ef1d-404d-959b-337e057966be.webp" alt="Ovo" />
-                                    </div>
-                                 </div>
-                                 <div className="flex flex-col cursor-pointer shadow-inner p-3 bg-zinc-300 opacity-65 ring-2 ring-offset-2 ring-offset-zinc-800 ring-zinc-300 rounded-2xl">
-                                    <div className="flex flex-col text-black">
-                                       <h1 className="font-semibold text-md">Rp.159.000</h1>
-                                       <p className="italic text-xs">Biaya layanan up to 2.5%</p>
-                                    </div>
-                                    <hr className="border border-black mt-3 mb-2" />
-                                    <div className="flex items-center justify-between">
-                                       <p className="text-gray-800 text-xs font-bold">E-Wallet</p>
-                                       <img className="w-10 object-contain" src="https://cdn.bangjeff.com/f367ae56-ef1d-404d-959b-337e057966be.webp" alt="Ovo" />
-                                    </div>
-                                 </div>
+                                 {eWalletPayments.map((payment) => {
+                                    const activeCard = payment.title === 'OVO'
+                                    return (
+                                       <div key={payment.id} className={`${activeCard ? "opacity-100" : "opacity-60"} flex flex-col cursor-pointer shadow-inner p-3 bg-gradient-to-br from-zinc-300 from-10% via-zinc-100 to-zinc-200 ring-2 ring-offset-2 ring-offset-zinc-800 ring-zinc-300 rounded-2xl`}>
+                                          <div className="flex flex-col text-black">
+                                             <h1 className="font-semibold text-md">Rp.159.000</h1>
+                                             <p className="italic text-xs">Biaya layanan up to 2.5%</p>
+                                          </div>
+                                          <hr className="border border-black mt-3 mb-2" />
+                                          <div className="flex items-center justify-between">
+                                             <p className="text-gray-800 text-xs font-bold">E-Wallet</p>
+                                             <img className="w-10 object-contain" src={payment.image} alt={payment.title} />
+                                          </div>
+                                       </div>
+                                    )
+                                 })}
                               </div>
                            )
                            : (
@@ -420,17 +393,47 @@ export default function Order() {
 
                      {/* Virtual Account */}
                      <div className="flex flex-col">
-                        <div className="p-3 flex justify-between items-center bg-zinc-600 rounded-t-2xl">
+                        <div
+                           onClick={() => setIsVirtualAccountShow(!isVirtualAccountShow)}
+                           className="cursor-pointer p-3 flex justify-between items-center bg-zinc-600 rounded-t-2xl">
                            <h1 className="font-semibold">Virtual Account</h1>
-                           <IoIosArrowDropdownCircle className="cursor-pointer text-lg" />
+                           {isVirtualAccountShow
+                              ?
+                              <IoIosArrowDropupCircle className="cursor-pointer text-lg" />
+                              :
+                              <IoIosArrowDropdownCircle className="cursor-pointer text-lg" />
+                           }
                         </div>
-                        <div className="p-3 flex justify-end bg-zinc-400 rounded-b-2xl">
-                           <div className="flex gap-2">
-                              {virtualAccountPayments.map((payment) => (
-                                 <img className="w-12 object-contain" src={payment.image} alt={payment.title} />
-                              ))}
-                           </div>
-                        </div>
+                        {isVirtualAccountShow
+                           ? (
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-5 px-5 py-7 bg-zinc-900 rounded-b-2xl animate-slideDown">
+                                 {virtualAccountPayments.map((payment) => {
+                                    const activeCard = payment.title === 'Bank BNI'
+                                    return (
+                                       <div key={payment.id} className={`${activeCard ? "opacity-100" : "opacity-60"} flex flex-col cursor-pointer shadow-inner p-3 bg-gradient-to-br from-zinc-300 from-10% via-zinc-100 to-zinc-200 ring-2 ring-offset-2 ring-offset-zinc-800 ring-zinc-300 rounded-2xl`}>
+                                          <div className="flex flex-col text-black">
+                                             <h1 className="font-semibold text-md">Rp.159.000</h1>
+                                             <p className="italic text-xs">Biaya layanan up to 2.5%</p>
+                                          </div>
+                                          <hr className="border border-black mt-3 mb-2" />
+                                          <div className="flex items-center justify-between">
+                                             <p className="text-gray-800 text-xs font-bold">Virtual Account</p>
+                                             <img className="w-10 object-contain" src={payment.image} alt={payment.title} />
+                                          </div>
+                                       </div>
+                                    )
+                                 })}
+                              </div>
+                           )
+                           : (
+                              <div className="p-3 flex justify-end bg-zinc-400 rounded-b-2xl">
+                                 <div className="flex gap-2">
+                                    {virtualAccountPayments.map((payment) => (
+                                       <img className="w-12 object-contain" src={payment.image} alt={payment.title} />
+                                    ))}
+                                 </div>
+                              </div>
+                           )}
                      </div>
                      {/* Virtual Account */}
                   </div>
@@ -443,11 +446,11 @@ export default function Order() {
                <Box no={"4"} title={'Masukan Kode Promo'}>
                   <div className="flex gap-2 w-full">
                      <input type="text" placeholder="Masukan kode promo" className="input input-xs w-full text-black rounded-sm text-sm placeholder:text-zinc-400" />
-                     <button className="btn btn-xs rounded-sm bg-yellow-400 hover:bg-yellow-600 text-white">Pakai Kode</button>
+                     <button className="btn btn-xs border-0 rounded-sm bg-yellow-400 hover:bg-yellow-600 text-white">Pakai Kode</button>
                   </div>
                   <button
                      onClick={showPromoModal}
-                     className="btn btn-sm rounded-sm w-full bg-yellow-400 hover:bg-yellow-600 text-white mt-4">
+                     className="btn btn-sm border-0 rounded-sm w-full bg-yellow-400 hover:bg-yellow-600 text-white mt-4">
                      <RiCoupon3Fill />
                      Lihat Kode Promo
                   </button>
@@ -481,7 +484,7 @@ export default function Order() {
                   <div className="w-full bg-zinc-950 border border-dashed border-zinc-600 flex items-center justify-center text-sm text-zinc-50 p-3 mb-3">
                      Anda belum memilih produk
                   </div>
-                  <button type="submit" className="btn bg-yellow-400 w-full flex items-center gap-2 text-white uppercase  hover:bg-yellow-600">
+                  <button type="submit" className="btn border-0 bg-yellow-400 w-full flex items-center gap-2 text-white uppercase  hover:bg-yellow-600">
                      <FaRegCalendarAlt />
                      Pesan Sekarang
                   </button>
@@ -655,7 +658,7 @@ export default function Order() {
                            <FaStar />
                         </div>
                      </div>
-                     <button type="submit" className="btn btn-sm bg-yellow-400 hover:bg-yellow-300 text-white w-full">Simpan</button>
+                     <button type="submit" className="btn btn-sm border-0 bg-yellow-400 hover:bg-yellow-300 text-white w-full">Simpan</button>
                   </form>
                </div>
             </Box>
@@ -666,13 +669,13 @@ export default function Order() {
          {/* Promo Modal */}
          {isPromoModalShow && <PromoModal closePromoModal={closePromoModal} />}
          {/* Promo Modal */}
-      </RootLayout>
+      </RootLayout >
    )
 }
 
 const Box = ({ className = '', no, title, children }) => {
    return (
-      <div className={`group flex flex-col gap-3 rounded-md bg-zinc-800 ${className}`}>
+      <div className={`group flex flex-col gap-3 rounded-md bg-dark-ui-2 ${className}`}>
          <header className="w-full flex rounded-t-md bg-zinc-600">
             <div className="bg-yellow-300 text-yellow-800 font-bold rounded-tl-md px-4 py-2 flex items-center justify-center">{no}</div>
             <h2 className="px-4 py-2 font-[500] text-lg">{title}</h2>

@@ -8,6 +8,7 @@ export const formatToRupiah = (amount) => {
       throw new TypeError("Jumlah harus berupa angka");
    }
 
-   const rupiahAmount = amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+   const rupiahAmount = "Rp. " + amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
    return rupiahAmount;
 }
+

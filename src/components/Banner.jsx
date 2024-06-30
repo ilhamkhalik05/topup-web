@@ -1,14 +1,17 @@
-import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+import Container from './container';
+import { bannerImage } from "./assets";
+
+import { EffectCards, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-cards';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import { bannerImage } from "./Assets";
 
 export default function Banner() {
    return (
-      <div className="relative">
+      <div className="relative max-h-full">
          <div className="absolute inset-0">
             <div className="shape"></div>
             <div className="shape"></div>
@@ -16,25 +19,27 @@ export default function Banner() {
             <div className="shape"></div>
             <div className="shape"></div>
             <div className="shape"></div>
+            <div className="shape"></div>
+            <div className="shape"></div>
          </div>
-         <div className="relative">
+         <Container className="w-[90%]">
             <Swiper
-               effect="coverflow"
+               className='h-full'
+               effect="cards"
                grabCursor={true}
                centeredSlides={true}
                loop={true}
                slidesPerView={'auto'}
-               modules={[EffectCoverflow, Pagination, Autoplay]}
+               modules={[EffectCards, Pagination, Autoplay]}
                pagination={{ clickable: false }}
                autoplay={{
-                  delay: 3000,
+                  delay: 2000,
                   disableOnInteraction: false,
                }}
-               coverflowEffect={{
-                  rotate: 0,
-                  stretch: 100,
-                  depth: 100,
-                  modifier: 1,
+               cardsEffect={{
+                  rotate: true,
+                  perSlideRotate: 2,
+                  perSlideOffset: 8,
                   slideShadows: true,
                }}
             >
@@ -67,13 +72,7 @@ export default function Banner() {
                   />
                </SwiperSlide>
             </Swiper>
-         </div>
-         <style jsx>{`
-            .swiper-slide-prev,
-            .swiper-slide-next {
-               transform: rotate(90deg);
-            }
-         `}</style>
+         </Container>
       </div>
    );
 }

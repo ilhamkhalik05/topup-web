@@ -1,20 +1,21 @@
-import { authSideImg } from "../components/Assets";
-import { transactions } from "../lib/placeholder-data";
+import RootLayout from "../root-layout";
+import Container from "../components/container";
+import SectionPage from "../components/section-page";
+import { ServicesTable } from "../components/ui/table";
+import { authSideImg } from "../components/assets";
+import { BiSolidCategoryAlt } from "react-icons/bi";
+
+import { services } from "../lib/placeholder-data";
+import CardList from "../components/card-list";
 import { products } from "../lib/products";
-import CardList from "../components/CardList";
-import Section from "../components/Section";
-import { ServicesTable } from "../components/Table";
-import { Link } from "react-router-dom";
-import RootLayout from "../RootLayout";
-import Container from "../components/Container";
 
 export default function Services() {
     return (
         <RootLayout>
             <Container>
-                <div className="relative p-3 overflow-hidden mb-10 lg:p-6">
+                <div className="relative p-6 overflow-hidden mb-10 rounded-xl">
                     <div className="absolute inset-0 w-full h-full">
-                        <img className="w-full h-full object-cover brightness-[0.2] rounded-md" src={authSideImg} alt="" />
+                        <img className="w-full h-full object-cover brightness-[0.4] rounded-xl" src={authSideImg} alt="" />
                     </div>
                     <div className="relative z-10 flex flex-col">
                         <h1 className="text-4xl font-bold text-zinc-50">Daftar Layanan</h1>
@@ -24,24 +25,28 @@ export default function Services() {
                     </div>
                 </div>
 
-                <Section className={"mb-20"}>
-                    <h1 className="text-2xl text-zinc-900 font-semibold mb-3 dark:text-zinc-100">Pilihan Layanan</h1>
-                    <div className="flex items-center gap-2 mb-5 text-sm">
-                        <Link className="px-3 py-1 rounded-full bg-yellow-400 border-2 border-solid border-yellow-400 text-white">Game</Link>
-                        <Link className="px-3 py-1 rounded-full bg-transparent border-2 border-solid border-zinc-500 dark:border-zinc-50 text-zinc-900 dark:text-white">Pulsa</Link>
-                        <Link className="px-3 py-1 rounded-full bg-transparent border-2 border-solid border-zinc-500 dark:border-zinc-50 text-zinc-900 dark:text-white">Voucher</Link>
+                <SectionPage id="kategori">
+                    <div className="flex flex-col gap-6">
+                        <header className="pl-2 flex flex-col justify-start items-start text-dark-ui dark:text-light-ui border-b-2 pb-3 border-dark-ui-2 dark:border-light-ui-2">
+                            <div className="flex items-center gap-2">
+                                <BiSolidCategoryAlt className="text-dark-ui dark:text-light-ui text-3xl" />
+                                <h1 className="text-lg lg:text-xl font-semibold">Pilih Kategori Layanan</h1>
+                            </div>
+                            <p className="text-sm text-gray-800 dark:text-gray-300 italic">Kamu bisa melihat semua layanan yang kami sediakan di bawah ini</p>
+                        </header>
+                        <div className="flex flex-col gap-2 mb-10 overflow-x-auto">
+                            <div className="flex items-center gap-2 mb-5">
+                                <div className="btn btn-xs md:btn-sm border-0 rounded-full bg-primary hover:bg-primary">Game</div>
+                                <div className="btn btn-xs md:btn-sm border border-dark-ui text-dark-ui dark:border-light-ui-2 dark:text-light-ui-2 rounded-full bg-transparent hover:bg-light-ui-2 dark:hover:bg-dark-ui-3">Voucher</div>
+                                <div className="btn btn-xs md:btn-sm border border-dark-ui text-dark-ui dark:border-light-ui-2 dark:text-light-ui-2 rounded-full bg-transparent hover:bg-light-ui-2 dark:hover:bg-dark-ui-3">Jasa Joki</div>
+                            </div>
+                            <CardList items={products} type={'service'} />
+                        </div>
+                        <div className="overflow-x-auto">
+                            <ServicesTable datas={services} />
+                        </div>
                     </div>
-                    <CardList items={products} type='games' />
-                </Section>
-
-                <Section>
-                    <header className="text-md text-gray-400 italic mb-3">
-                        Menampilkan 5 Transaksi Terbaru
-                    </header>
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <ServicesTable datas={transactions} />
-                    </div>
-                </Section>
+                </SectionPage>
             </Container>
         </RootLayout>
     )

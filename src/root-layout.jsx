@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
+import Navbar from "./components/navbar"
+import Footer from "./components/footer"
 
 export default function RootLayout({ children }) {
    const darkMode = useSelector((state) => state.darkMode.value)
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
 
    return (
       <div
-         className="bg-zinc-50 dark:bg-gradient-to-br from-neutral-950 from-20% to-neutral-900 transition-all duration-500">
+         className="bg-root-light dark:bg-root-dark theme-transition">
          <Navbar />
          {children}
          <Footer />

@@ -1,15 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Beranda from "./pages/Beranda";
-import Auth from "./pages/Auth";
-import Services from "./pages/Services";
-import TransactionCheck from "./pages/TransactionCheck";
-import Order from "./pages/Order"
+import Home from "./pages/home"
+import Auth from "./pages/auth";
+import Services from "./pages/services";
+import TransactionCheck from "./pages/transaction-check"
+import Order from "./pages/order"
 
 export default function App() {
    return (
       <BrowserRouter basename="/">
          <Routes>
-            <Route element={<Beranda />} path={'/'} />
+            <Route element={<Home />} path={'/'} />
             <Route element={<Auth currentPage="signin" />} path={'/signin'} />
             <Route element={<Auth currentPage="signup" />} path={'/signup'} />
             <Route element={<Services />} path={'/services'} />

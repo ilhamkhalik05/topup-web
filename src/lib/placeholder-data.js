@@ -1,3 +1,18 @@
+export const users = [
+   {
+      id: 1,
+      name: "adamnihges",
+      email: "adam@example.com",
+      password: "adamajah",
+   },
+   {
+      id: 2,
+      name: "kurniawan",
+      email: "kurniawan@example",
+      password: "kurniawan123",
+   }
+]
+
 export const sales = [
    {
       id: 1,
@@ -6,7 +21,7 @@ export const sales = [
       sale: 35000,
       quantity: 50,
       type: "Diamond",
-      stok: 20,
+      stok: 99999,
    },
    {
       id: 2,
@@ -15,7 +30,7 @@ export const sales = [
       sale: 80000,
       quantity: 100,
       type: "Diamond",
-      stok: 90,
+      stok: 99999,
    },
    {
       id: 3,
@@ -24,7 +39,7 @@ export const sales = [
       sale: 160000,
       quantity: 200,
       type: "Diamond",
-      stok: 100,
+      stok: 99999,
    },
    {
       id: 4,
@@ -33,46 +48,82 @@ export const sales = [
       sale: 120000,
       quantity: 200,
       type: "Diamond",
-      stok: 40,
+      stok: 99999,
    },
 ]
 
 export const transactions = [
    {
       id: 1,
+      invoice_id: "TPINVID234XXXXX",
       category: 'Mobile Legend',
       service: 'Mobile Legend (Indonesia) - 28 Diamonds',
       date: '2022-01-01',
-      status: 'pending'
+      status: 'processing'
    },
    {
       id: 2,
+      invoice_id: "TPINVID234XXXXX",
       category: 'PUBG Mobile',
       service: 'PUBG Mobile - 28 Diamonds',
       date: '2022-01-02',
-      status: 'pending'
+      status: 'success'
    },
    {
       id: 3,
+      invoice_id: "TPINVID234XXXXX",
       category: 'Genshin Impact',
       service: 'Genshin Impact - 28 Diamonds',
       date: '2022-01-03',
-      status: 'pending'
+      status: 'success'
    },
    {
       id: 4,
+      invoice_id: "TPINVID234XXXXX",
       category: 'Mobile Legend',
       service: 'Mobile Legend (Indonesia) - 28 Diamonds',
       date: '2022-01-04',
-      status: 'pending'
+      status: 'success'
    },
    {
       id: 5,
+      invoice_id: "TPINVID234XXXXX",
       category: 'Mobile Legend',
       service: 'Mobile Legend (Indonesia) - 28 Diamonds',
       date: '2022-01-05',
       status: 'success'
    }
+]
+
+export const services = [
+   {
+      pid: "MLSTAR431",
+      category: "Mobile Legend",
+      service: "Mobile Legend (Indonesia) - 28 Diamonds",
+      price: 1366,
+      status: "aktif"
+   },
+   {
+      pid: "MLSTAR431",
+      category: "Mobile Legend",
+      service: "Mobile Legend (Indonesia) - 32 Diamonds",
+      price: 2399,
+      status: "aktif"
+   },
+   {
+      pid: "MLSTAR431",
+      category: "Mobile Legend",
+      service: "Mobile Legend (Indonesia) - 52 Diamonds",
+      price: 3366,
+      status: "aktif"
+   },
+   {
+      pid: "MLSTAR431",
+      category: "Mobile Legend",
+      service: "Mobile Legend (Indonesia) - 64 Diamonds",
+      price: 4899,
+      status: "tidak aktif"
+   },
 ]
 
 export const voucher = [
