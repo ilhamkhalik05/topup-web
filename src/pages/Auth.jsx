@@ -1,11 +1,22 @@
 import { SignInForm, SignUpForm } from '../components/ui/form'
 import { authSideImg } from '../components/assets'
-import { Link } from 'react-router-dom'
-
 import { FaAnglesLeft } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa"
 
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 export default function Auth({ currentPage }) {
+   const status = useSelector((state) => state.auth.status);
+   const navigate = useNavigate('/')
+
+   useEffect(() => {
+      if (status === 'authenticated') {
+         navigate('/dashboard')
+      }
+   }, [])
+
    return (
       <>
          {/* Home Redirect Mobile */}
@@ -27,7 +38,7 @@ export default function Auth({ currentPage }) {
             </Link>
          </div>
          {/* Home Redirect Desktop*/}
-         
+
          <div className="flex flex-row w-full h-screen">
             {/* Side Pic */}
             <div className="hidden lg:block w-1/2">
@@ -35,7 +46,7 @@ export default function Auth({ currentPage }) {
             </div>
 
             {/* Auth Form */}
-            <div className="block w-full lg:w-1/2 bg-gradient-to-b from-slate-900 to-slate-950 overflow-y-auto">
+            <div className="block w-full lg:w-1/2 bg-gradient-to-b from-slate-900 to-slate-950 overflow-y-auto no-scrollbar">
                <div className="container px-5 py-7 flex flex-col">
                   <ToggleForm currentPage={currentPage} />
 

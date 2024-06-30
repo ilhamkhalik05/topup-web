@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom"
 import { logo } from "../assets"
+import { useDispatch } from "react-redux"
+import { useState } from "react";
+import { login } from "../../app/features/auth/auth-slice"
+
+import { MdOutlineMailOutline } from "react-icons/md";
+import { FaEyeSlash, FaEye, FaUser, FaPhone } from "react-icons/fa";
 
 export const SignInForm = () => {
+   const dispatch = useDispatch()
+
+   const onLoginSubmit = (e) => {
+      const email = e.target[0].value
+      const password = e.target[1].value
+      dispatch(login({ email, password }))
+   }
+
    return (
-      <form action="">
+      <form onSubmit={onLoginSubmit}
+      >
          <Header>
             <p className='font-normal text-gray-400 italic'>Mohon masukan informasi akun terdaftar kamu dengan benar</p>
          </Header>
          <hr className='mt-5 mb-3 border-yellow-300' />
          <InputGroup
+            icon={<MdOutlineMailOutline />}
             label="Email"
             type="email"
             name="email"
@@ -53,6 +69,7 @@ export const SignUpForm = () => {
          </Header>
          <hr className='mt-5 mb-3 border-yellow-300' />
          <InputGroup
+            icon={<FaUser />}
             label="Username"
             type="text"
             name="username"
@@ -60,6 +77,7 @@ export const SignUpForm = () => {
             required
          />
          <InputGroup
+            icon={<FaPhone />}
             label="Nomor Whatsapp"
             type="text"
             name="whatsapp_number"
@@ -67,6 +85,7 @@ export const SignUpForm = () => {
             required
          />
          <InputGroup
+            icon={<MdOutlineMailOutline />}
             label="Email"
             type="email"
             name="email"
@@ -109,21 +128,32 @@ const Header = ({ children }) => {
    )
 }
 
-const InputGroup = ({ label, type, name, placeholder, value, onChange }) => {
+const InputGroup = ({ icon, label, type, name, placeholder }) => {
+   const [isPasswordShown, setIsPasswordShown] = useState(false)
+   const isPasswordType = type === 'password'
+
+   const togglePassword = () => {
+      setIsPasswordShown(!isPasswordShown)
+   }
+
    return (
-      <div className="flex flex-col gap-1 mb-3">
+      <div className="relative flex flex-col gap-1 mb-3">
          <label className='text-gray-300 font-semibold' htmlFor={label.toLowerCase()}>
             {label}
          </label>
          <input
-            type={type}
+            className='outline-none border-none focus:ring-2 focus:ring-yellow-300 rounded-lg'
+            type={isPasswordType ? (isPasswordShown ? 'text' : 'password') : type}
             name={name}
             id={label.toLowerCase()}
             placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            className='rounded-lg'
+            autoComplete="off"
          />
+         <div
+            className={`${!!isPasswordType && 'cursor-pointer'} absolute right-4 top-10 text-lg`}
+            onClick={!!isPasswordType && togglePassword}>
+            {isPasswordType ? (isPasswordShown ? <FaEye /> : <FaEyeSlash />) : icon}
+         </div>
       </div>
    )
 }

@@ -22,7 +22,7 @@ export default function Banner() {
             <div className="shape"></div>
             <div className="shape"></div>
          </div>
-         <Container className="w-[90%]">
+         <Container>
             <Swiper
                className='h-full'
                effect="cards"

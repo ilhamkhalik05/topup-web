@@ -4,7 +4,7 @@ import Auth from "./pages/auth";
 import Services from "./pages/services";
 import TransactionCheck from "./pages/transaction-check"
 import Order from "./pages/order"
-
+import Dashboard from "./pages/dashboard";
 export default function App() {
    return (
       <BrowserRouter basename="/">
@@ -14,6 +14,7 @@ export default function App() {
             <Route element={<Auth currentPage="signup" />} path={'/signup'} />
             <Route element={<Services />} path={'/services'} />
             <Route element={<TransactionCheck />} path={'/transaction-check'} />
+            <Route element={<Dashboard />} path={'/dashboard'} />
             <Route element={<Order />} path={'/order/:slug'} />
          </Routes>
       </BrowserRouter>

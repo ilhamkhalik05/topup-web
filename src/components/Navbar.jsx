@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { FaSearch, FaHome, FaList } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import { IoSearchOutline } from "react-icons/io5";
 import { FiMoon, FiSun } from "react-icons/fi";
-import { FaArrowRightFromBracket, FaRegUser, FaBars, FaServicestack } from "react-icons/fa6";
+import { FaArrowRightFromBracket, FaRegUser, FaBars } from "react-icons/fa6";
 import { BsCurrencyExchange } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { toggleDarkMode } from "../app/features/dark-mode/dark-mode-slice";
@@ -12,12 +13,15 @@ import { GrServices } from "react-icons/gr";
 import { logo } from "./assets";
 import { SearchModal } from "./ui/modal";
 import SideNav from "./ui/side-navbar";
+import UserAvatar from "./ui/user-avatar";
 
 export default function Navbar() {
    const darkMode = useSelector((state) => state.darkMode.value);
+   const authStatus = useSelector((state) => state.auth.status);
    const dispatch = useDispatch();
    const location = useLocation();
    const { pathname } = location
+
    const links = [
       {
          label: "Home",
@@ -42,7 +46,11 @@ export default function Navbar() {
             <div className="container flex justify-between items-center mx-auto p-5">
                <NavBurgerToggler dispatch={dispatch} />
                <NavStart pathname={pathname} links={links} />
-               <NavEnd darkMode={darkMode} dispatch={dispatch} />
+               <NavEnd
+                  darkMode={darkMode}
+                  authStatus={authStatus}
+                  dispatch={dispatch}
+               />
             </div>
          </nav>
          <SearchModal />
@@ -81,39 +89,57 @@ const NavStart = ({ pathname, links }) => {
    )
 };
 
-const NavEnd = ({ darkMode, dispatch }) => (
-   <div className="nav-end flex items-center gap-4">
+const NavEnd = ({ darkMode, authStatus, dispatch }) => (
+   <div className="nav-end flex items-center gap-2">
       <div
-         className="z-20 cursor-pointer text-lg peer-focus:text-primary"
+         className="px-3 py-2 rounded-lg border border-dark-ui-3 text-light-ui opacity-85 cursor-pointer hover:bg-dark-ui-2 hover:opacity-100 transition-all duration-100"
          onClick={() => dispatch(showSearchModal())}
       >
-         <FaSearch />
+         <div className="flex items-center gap-2">
+            <IoSearchOutline className="text-lg" />
+            Search
+         </div>
       </div>
 
-      {darkMode
-         ? <FiSun className="hidden lg:block cursor-pointer text-2xl font-bold" onClick={() => dispatch(toggleDarkMode())} />
-         : <FiMoon className="hidden lg:block cursor-pointer text-2xl font-bold" onClick={() => dispatch(toggleDarkMode())} />
+      <div className="px-3 py-2 rounded-lg border border-dark-ui-3 text-light-ui opacity-85 cursor-pointer hover:bg-dark-ui-2 hover:opacity-100 transition-all duration-100" onClick={() => dispatch(toggleDarkMode())}>
+         {darkMode
+            ? <FiSun className="hidden lg:block text-2xl font-bold" />
+            : <FiMoon className="hidden lg:block text-2xl font-bold" />
+         }
+      </div>
+
+      <NavAuth authStatus={authStatus} />
+   </div>
+);
+
+const NavAuth = ({ authStatus }) => (
+   <div className="hidden lg:block ml-2">
+      {authStatus === "authenticated"
+         ?
+         <UserAvatar />
+         :
+         <UserUnauthenticatedNav />
       }
-
-      <NavAuth />
    </div>
 );
 
-const NavAuth = () => (
-   <div className="user hidden lg:flex items-center gap-2 ml-2">
-      <Link
-         className="font-semibold px-5 py-2 bg-transparent opacity-80 text-light-ui outline-1 outline outline-white hover:opacity-100 rounded-md flex items-center gap-2 transition-opacity ease-in-out duration-50"
-         to="/signin"
-      >
-         <FaArrowRightFromBracket />
-         Masuk
-      </Link>
-      <Link
-         className="font-semibold px-5 py-2 bg-primary opacity-90 hover:opacity-100 text-dark-ui rounded-md flex items-center gap-2 ease-in duration-150"
-         to="/signup"
-      >
-         <FaRegUser />
-         Daftar
-      </Link>
-   </div>
-);
+const UserUnauthenticatedNav = () => {
+   return (
+      <div className="flex items-center gap-2 ml-2">
+         <Link
+            className="font-semibold px-5 py-2 bg-transparent opacity-80 text-light-ui outline-1 outline outline-white hover:opacity-100 rounded-md flex items-center gap-2 transition-opacity ease-in-out duration-50"
+            to="/signin"
+         >
+            <FaArrowRightFromBracket />
+            Masuk
+         </Link>
+         <Link
+            className="font-semibold px-5 py-2 bg-primary opacity-90 hover:opacity-100 text-dark-ui rounded-md flex items-center gap-2 ease-in duration-150"
+            to="/signup"
+         >
+            <FaRegUser />
+            Daftar
+         </Link>
+      </div>
+   )
+}
