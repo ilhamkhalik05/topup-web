@@ -1,24 +1,15 @@
 import { Link } from "react-router-dom"
 import { logo } from "../assets"
-import { useDispatch } from "react-redux"
-import { useState } from "react";
-import { login } from "../../app/features/auth/auth-slice"
-
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaEyeSlash, FaEye, FaUser, FaPhone } from "react-icons/fa";
 
+import { useState } from "react";
+import { useSignin } from '../../hooks/useSignin'
+
 export const SignInForm = () => {
-   const dispatch = useDispatch()
-
-   const onLoginSubmit = (e) => {
-      const email = e.target[0].value
-      const password = e.target[1].value
-      dispatch(login({ email, password }))
-   }
-
+   const { signin } = useSignin()
    return (
-      <form onSubmit={onLoginSubmit}
-      >
+      <form onSubmit={signin.handleSubmit}>
          <Header>
             <p className='font-normal text-gray-400 italic'>Mohon masukan informasi akun terdaftar kamu dengan benar</p>
          </Header>
@@ -29,6 +20,7 @@ export const SignInForm = () => {
             type="email"
             name="email"
             placeholder="Masukan Email"
+            onChange={signin.handleChange}
             required
          />
          <InputGroup
@@ -36,6 +28,7 @@ export const SignInForm = () => {
             type="password"
             name="password"
             placeholder="Masukan Password"
+            onChange={signin.handleChange}
             required
          />
          <div className="flex justify-between items-center mb-3">
@@ -128,7 +121,7 @@ const Header = ({ children }) => {
    )
 }
 
-const InputGroup = ({ icon, label, type, name, placeholder }) => {
+const InputGroup = ({ icon, label, type, name, placeholder, onChange }) => {
    const [isPasswordShown, setIsPasswordShown] = useState(false)
    const isPasswordType = type === 'password'
 
@@ -147,13 +140,23 @@ const InputGroup = ({ icon, label, type, name, placeholder }) => {
             name={name}
             id={label.toLowerCase()}
             placeholder={placeholder}
+            onChange={onChange}
             autoComplete="off"
          />
-         <div
-            className={`${!!isPasswordType && 'cursor-pointer'} absolute right-4 top-10 text-lg`}
-            onClick={!!isPasswordType && togglePassword}>
-            {isPasswordType ? (isPasswordShown ? <FaEye /> : <FaEyeSlash />) : icon}
-         </div>
+
+         {isPasswordType
+            ?
+            <div
+               className='cursor-pointer absolute right-4 top-10 text-lg'
+               onClick={togglePassword}>
+               {isPasswordShown ? <FaEye /> : <FaEyeSlash />}
+            </div>
+            :
+            <div
+               className='cursor-pointer absolute right-4 top-10 text-lg'>
+               {icon}
+            </div>
+         }
       </div>
    )
 }

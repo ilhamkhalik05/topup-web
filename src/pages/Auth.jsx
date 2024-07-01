@@ -3,20 +3,9 @@ import { authSideImg } from '../components/assets'
 import { FaAnglesLeft } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa"
 
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom'
 
 export default function Auth({ currentPage }) {
-   const status = useSelector((state) => state.auth.status);
-   const navigate = useNavigate('/')
-
-   useEffect(() => {
-      if (status === 'authenticated') {
-         navigate('/dashboard')
-      }
-   }, [])
-
    return (
       <>
          {/* Home Redirect Mobile */}

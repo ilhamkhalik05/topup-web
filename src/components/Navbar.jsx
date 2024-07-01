@@ -13,11 +13,10 @@ import { GrServices } from "react-icons/gr";
 import { logo } from "./assets";
 import { SearchModal } from "./ui/modal";
 import SideNav from "./ui/side-navbar";
-import UserAvatar from "./ui/user-avatar";
+// import UserAvatar from "./ui/user-avatar";
 
 export default function Navbar() {
    const darkMode = useSelector((state) => state.darkMode.value);
-   const authStatus = useSelector((state) => state.auth.status);
    const dispatch = useDispatch();
    const location = useLocation();
    const { pathname } = location
@@ -48,8 +47,8 @@ export default function Navbar() {
                <NavStart pathname={pathname} links={links} />
                <NavEnd
                   darkMode={darkMode}
-                  authStatus={authStatus}
                   dispatch={dispatch}
+               // authStatus={authStatus}
                />
             </div>
          </nav>
@@ -92,19 +91,21 @@ const NavStart = ({ pathname, links }) => {
 const NavEnd = ({ darkMode, authStatus, dispatch }) => (
    <div className="nav-end flex items-center gap-2">
       <div
-         className="px-3 py-2 rounded-lg border border-dark-ui-3 text-light-ui opacity-85 cursor-pointer hover:bg-dark-ui-2 hover:opacity-100 transition-all duration-100"
+         className="px-3 py-2 font-light rounded-lg border border-dark-ui-3 text-light-ui opacity-85 cursor-pointer hover:bg-dark-ui-2 hover:opacity-100 transition-all duration-100"
          onClick={() => dispatch(showSearchModal())}
       >
          <div className="flex items-center gap-2">
             <IoSearchOutline className="text-lg" />
-            Search
+            <h1 className="hidden md:block">
+               Search
+            </h1>
          </div>
       </div>
 
-      <div className="px-3 py-2 rounded-lg border border-dark-ui-3 text-light-ui opacity-85 cursor-pointer hover:bg-dark-ui-2 hover:opacity-100 transition-all duration-100" onClick={() => dispatch(toggleDarkMode())}>
+      <div className="hidden lg:block px-3 py-2 rounded-lg border border-dark-ui-3 text-light-ui opacity-85 cursor-pointer hover:bg-dark-ui-2 hover:opacity-100 transition-all duration-100" onClick={() => dispatch(toggleDarkMode())}>
          {darkMode
-            ? <FiSun className="hidden lg:block text-2xl font-bold" />
-            : <FiMoon className="hidden lg:block text-2xl font-bold" />
+            ? <FiSun className="text-2xl font-bold" />
+            : <FiMoon className="text-2xl font-bold" />
          }
       </div>
 
@@ -112,14 +113,9 @@ const NavEnd = ({ darkMode, authStatus, dispatch }) => (
    </div>
 );
 
-const NavAuth = ({ authStatus }) => (
-   <div className="hidden lg:block ml-2">
-      {authStatus === "authenticated"
-         ?
-         <UserAvatar />
-         :
-         <UserUnauthenticatedNav />
-      }
+const NavAuth = () => (
+   <div className="hidden lg:block">
+      <UserUnauthenticatedNav />
    </div>
 );
 

@@ -3,10 +3,13 @@ import Footer from "./components/footer"
 
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
-
+import { useSession } from "./hooks/useSession"
 export default function RootLayout({ children }) {
    const darkMode = useSelector((state) => state.darkMode.value)
+   const { data: session } = useSession()
 
+   console.log(session)
+   
    useEffect(() => {
       if (darkMode) {
          document.documentElement.classList.add('dark')
