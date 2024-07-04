@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { setSection } from "../app/features/section-tab/section-tab-slice";
-import { products } from "../lib/products";
-import { voucher } from "../lib/placeholder-data"
+import { products, voucher } from "../lib/data/product";
+
 import CardList from "./card-list";
 import { TbDeviceGamepad2 } from "react-icons/tb";
 import { MdOutlineArrowDropDownCircle } from "react-icons/md";

@@ -3,13 +3,23 @@ import { logo } from "../assets"
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaEyeSlash, FaEye, FaUser, FaPhone } from "react-icons/fa";
 
+import { signin } from "../../lib/auth/actions"
+import { SigninSchema } from "../../lib/auth/schema"
+import { useFormik } from "formik";
 import { useState } from "react";
-import { useSignin } from '../../hooks/useSignin'
 
 export const SignInForm = () => {
-   const { signin } = useSignin()
+   const signinForm = useFormik({
+      initialValues: {
+         email: "",
+         password: "",
+      },
+      validationSchema: SigninSchema,
+      onSubmit: (values) => signin(values)
+   })
+
    return (
-      <form onSubmit={signin.handleSubmit}>
+      <form onSubmit={signinForm.handleSubmit}>
          <Header>
             <p className='font-normal text-gray-400 italic'>Mohon masukan informasi akun terdaftar kamu dengan benar</p>
          </Header>
@@ -17,21 +27,21 @@ export const SignInForm = () => {
          <InputGroup
             icon={<MdOutlineMailOutline />}
             label="Email"
-            type="email"
+            type="text"
             name="email"
             placeholder="Masukan Email"
-            onChange={signin.handleChange}
-            required
+            onChange={signinForm.handleChange}
+            error={signinForm.errors.email && signinForm.touched.email ? signinForm.errors.email : ''}
          />
          <InputGroup
             label="Password"
             type="password"
             name="password"
             placeholder="Masukan Password"
-            onChange={signin.handleChange}
-            required
+            onChange={signinForm.handleChange}
+            error={signinForm.errors.password && signinForm.touched.password ? signinForm.errors.password : ''}
          />
-         <div className="flex justify-between items-center mb-3">
+         <div className="flex justify-between items-center">
             <div className="remember">
                <label className="label cursor-pointer">
                   <span className="label-text text-gray-200 mr-2">Remember me</span>
@@ -67,7 +77,6 @@ export const SignUpForm = () => {
             type="text"
             name="username"
             placeholder="Masukan Username"
-            required
          />
          <InputGroup
             icon={<FaPhone />}
@@ -75,29 +84,25 @@ export const SignUpForm = () => {
             type="text"
             name="whatsapp_number"
             placeholder="Masukan Nomor Whatsapp"
-            required
          />
          <InputGroup
             icon={<MdOutlineMailOutline />}
             label="Email"
-            type="email"
+            type="text"
             name="email"
             placeholder="Masukan Email"
-            required
          />
          <InputGroup
             label="Password"
             type="password"
             name="password"
             placeholder="Masukan Password"
-            required
          />
          <InputGroup
             label="Konfirmasi Password"
             type="password"
             name="confirm_password"
             placeholder="Konfirmasi Password"
-            required
          />
          <button
             className='btn border-0 bg-gradient-to-br from-yellow-300 to-yellow-500 text-zinc-100 w-full rounded-lg mt-5'
@@ -121,7 +126,7 @@ const Header = ({ children }) => {
    )
 }
 
-const InputGroup = ({ icon, label, type, name, placeholder, onChange }) => {
+const InputGroup = ({ icon, label, type, name, placeholder, onChange, error }) => {
    const [isPasswordShown, setIsPasswordShown] = useState(false)
    const isPasswordType = type === 'password'
 
@@ -135,7 +140,7 @@ const InputGroup = ({ icon, label, type, name, placeholder, onChange }) => {
             {label}
          </label>
          <input
-            className='outline-none border-none focus:ring-2 focus:ring-yellow-300 rounded-lg'
+            className={`outline-none border-none focus:ring-2 ${error ? 'focus:ring-red-500' : 'focus:ring-yellow-300'} rounded-lg`}
             type={isPasswordType ? (isPasswordShown ? 'text' : 'password') : type}
             name={name}
             id={label.toLowerCase()}
@@ -144,19 +149,25 @@ const InputGroup = ({ icon, label, type, name, placeholder, onChange }) => {
             autoComplete="off"
          />
 
-         {isPasswordType
-            ?
-            <div
-               className='cursor-pointer absolute right-4 top-10 text-lg'
-               onClick={togglePassword}>
-               {isPasswordShown ? <FaEye /> : <FaEyeSlash />}
-            </div>
-            :
-            <div
-               className='cursor-pointer absolute right-4 top-10 text-lg'>
-               {icon}
-            </div>
-         }
-      </div>
+         {/* Error Message */}
+         {!!error && (
+            <p className="text-red-500 text-sm mt-1">{error}</p>
+         )}
+
+         {/* Input Icon */}
+         <div className="cursor-pointer absolute right-4 top-10 text-lg">
+            {isPasswordType
+               ?
+               <div
+                  onClick={togglePassword}>
+                  {isPasswordShown ? <FaEye /> : <FaEyeSlash />}
+               </div>
+               :
+               <>
+                  {icon}
+               </>
+            }
+         </div>
+      </div >
    )
 }

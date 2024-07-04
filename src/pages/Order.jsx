@@ -1,9 +1,11 @@
+import { useParams } from "react-router"
+import { useState } from "react";
+import { products, payments } from "../lib/data/product"
+
 import RootLayout from "../root-layout"
 import CardList from '../components/card-list'
 import { PromoModal } from "../components/ui/modal";
-import { useParams } from "react-router"
-import { useState } from "react";
-import { products } from "../lib/products"
+
 import { FaGlobe, FaRegThumbsUp } from "react-icons/fa6";
 import { IoWalletOutline, IoPricetagsOutline } from "react-icons/io5";
 import { BsExclamationCircle } from "react-icons/bs";
@@ -15,7 +17,7 @@ import { FaHeadphonesAlt } from "react-icons/fa";
 import { LuMedal } from "react-icons/lu";
 import { GiFire } from "react-icons/gi";
 import { IoMdFlash } from "react-icons/io";
-import { payments } from "../lib/placeholder-data";
+
 import { PhoneInput } from "react-international-phone";
 import 'react-international-phone/style.css';
 

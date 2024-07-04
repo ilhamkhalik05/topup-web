@@ -1,11 +1,22 @@
-import { SignInForm, SignUpForm } from '../components/ui/form'
-import { authSideImg } from '../components/assets'
-import { FaAnglesLeft } from "react-icons/fa6";
-import { FaHome } from "react-icons/fa"
+import { getLocalToken } from '../lib/auth/utils';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
+import { authSideImg } from '../components/assets'
+import { SignInForm, SignUpForm } from '../components/ui/form'
+import { FaHome } from "react-icons/fa"
+import { FaAnglesLeft } from "react-icons/fa6";
 
 export default function Auth({ currentPage }) {
+   const navigate = useNavigate()
+   const token = getLocalToken()
+
+   useEffect(() => {
+      if (token) {
+         navigate('/dashboard')
+      }
+   }, [token])
+
    return (
       <>
          {/* Home Redirect Mobile */}
@@ -28,14 +39,14 @@ export default function Auth({ currentPage }) {
          </div>
          {/* Home Redirect Desktop*/}
 
-         <div className="flex flex-row w-full h-screen">
+         <div className="grid grid-cols-4 w-full h-screen">
             {/* Side Pic */}
-            <div className="hidden lg:block w-1/2">
+            <div className="hidden lg:block col-span-2">
                <img className='w-full h-full object-cover object-center' src={authSideImg} alt="" />
             </div>
 
             {/* Auth Form */}
-            <div className="block w-full lg:w-1/2 bg-gradient-to-b from-slate-900 to-slate-950 overflow-y-auto no-scrollbar">
+            <div className="block col-span-4 lg:col-span-2 bg-gradient-to-b from-slate-900 to-slate-950 overflow-y-auto no-scrollbar">
                <div className="container px-5 py-7 flex flex-col">
                   <ToggleForm currentPage={currentPage} />
 

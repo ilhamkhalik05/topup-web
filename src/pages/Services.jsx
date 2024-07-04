@@ -1,13 +1,12 @@
+import { products, services } from "../lib/data/product";
+
 import RootLayout from "../root-layout";
 import Container from "../components/container";
 import SectionPage from "../components/section-page";
+import CardList from "../components/card-list";
 import { ServicesTable } from "../components/ui/table";
 import { authSideImg } from "../components/assets";
 import { BiSolidCategoryAlt } from "react-icons/bi";
-
-import { services } from "../lib/placeholder-data";
-import CardList from "../components/card-list";
-import { products } from "../lib/products";
 
 export default function Services() {
     return (

@@ -1,6 +1,6 @@
 import fire from "../../assets/svg/fire.svg"
 import { diamond } from "../assets"
-import { formatToRupiah, getPriceSavings } from "../../lib/utils"
+import { formatToRupiah, getPriceSavings } from "../../lib/data/utils"
 
 export const SaleCard = ({ title, price, sale, quantity, type, stok }) => {
    const priceSaving = getPriceSavings(price, sale)

@@ -1,11 +1,10 @@
-import { authSideImg } from "../components/assets";
-import { transactions } from "../lib/placeholder-data";
-import { products } from "../lib/products";
+import { transactions } from "../lib/data/product";
+
 import RootLayout from "../root-layout";
 import SectionPage from "../components/section-page";
 import Container from "../components/container";
+import { authSideImg } from "../components/assets";
 import { TransactionTable } from "../components/ui/table"
-
 import { FaSearch } from "react-icons/fa";
 
 export default function Services() {

@@ -5,13 +5,11 @@ import SectionPage from '../components/section-page'
 import CardList from "../components/card-list";
 import Countdown from "../components/ui/countdown";
 import SectionTab from "../components/section-tab";
-
-import { sales } from "../lib/placeholder-data";
-import { products } from "../lib/products";
-
 import { FaBolt } from "react-icons/fa6";
 import { SiBetterstack } from "react-icons/si";
 import { ImFire } from "react-icons/im";
+
+import { products, sales } from "../lib/data/product";
 
 export default function Home() {
    return (

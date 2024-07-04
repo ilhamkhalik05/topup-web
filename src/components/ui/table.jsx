@@ -1,4 +1,4 @@
-import { formatToRupiah } from "../../lib/utils";
+import { formatToRupiah } from "../../lib/data/utils";
 
 export const TransactionTable = ({ datas }) => {
    return (

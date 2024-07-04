@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSearchModal } from '../../app/features/search-modal/search-modal-slice';
 import { FaSearch } from 'react-icons/fa';
-import { products } from '../../lib/products';
+import { products } from '../../lib/data/product';
 import { BsClockHistory } from "react-icons/bs";
 import { FaX } from "react-icons/fa6";
 
