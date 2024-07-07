@@ -41,7 +41,7 @@ export default function Auth({ currentPage }) {
 
          <div className="grid grid-cols-4 w-full h-screen">
             {/* Side Pic */}
-            <div className="hidden lg:block col-span-2">
+            <div className="hidden lg:block col-span-2 overflow-hidden">
                <img className='w-full h-full object-cover object-center' src={authSideImg} alt="" />
             </div>
 
