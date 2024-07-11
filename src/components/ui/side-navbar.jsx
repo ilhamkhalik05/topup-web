@@ -1,19 +1,36 @@
+import { FaMoon, FaSun, FaUser } from "react-icons/fa";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
+import { FaMoneyBillTransfer } from "react-icons/fa6"
+import { GrTransaction } from "react-icons/gr"
+import { TbReport } from "react-icons/tb"
+import { RxDashboard } from "react-icons/rx";
+
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { closeMobileNav } from "../../app/features/mobile-nav/mobile-nav-slice";
-import { FaMoon, FaSun, FaUser } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 import { setDarkMode, resetDarkMode } from "../../app/features/dark-mode/dark-mode-slice";
-import { FaArrowRightFromBracket } from "react-icons/fa6";
+import { closeMobileNav } from "../../app/features/mobile-nav/mobile-nav-slice";
 import { logo } from '../assets'
+import { getLocalToken } from "../../lib/auth/utils";
 
 export default function SideNav({ links }) {
+   const token = getLocalToken()
+   const [animationClass, setAnimationClass] = useState("");
+   const [isAuthenticated, setIsAuthenticated] = useState(token ? true : false)
    const darkMode = useSelector((state) => state.darkMode.value);
    const isMobileNavShow = useSelector((state) => state.mobileNav.show);
+   const { pathname } = useLocation();
    const dispatch = useDispatch();
-   const location = useLocation();
-   const { pathname } = location;
-   const [animationClass, setAnimationClass] = useState("");
+
+   console.log(pathname)
+
+   useEffect(() => {
+      if (token) {
+         setIsAuthenticated(true)
+      } else {
+         setIsAuthenticated(false)
+      }
+   }, [token])
 
    useEffect(() => {
       if (isMobileNavShow) {
@@ -43,9 +60,12 @@ export default function SideNav({ links }) {
                   <div className="w-full flex flex-col items-start gap-5 ml-3 text-light-ui">
                      <div className={`flex flex-col items-start gap-2`}>
                         {links.map((link, index) => {
+                           const isPathMatches = pathname === link.path
+                           const isDashboard = isPathMatches && pathname.includes('/dashboard')
+
                            return (
                               <a
-                                 className={`${pathname === link.path ? 'text-yellow-200' : null} flex items-center gap-3 hover:text-yellow-200`}
+                                 className={`${isPathMatches || isDashboard ? 'text-yellow-200' : null} ${link.label === 'Dashboard' && 'mt-3'} flex items-center gap-3 hover:text-yellow-200`}
                                  key={index}
                                  href={link.path}>
                                  {link.icon}
@@ -54,36 +74,40 @@ export default function SideNav({ links }) {
                            )
                         })}
                      </div>
-                     <div className={`flex flex-col items-start gap-2`}>
-                        {darkMode
-                           ? <button
+
+                     {!isAuthenticated && (
+                        <div className={`flex flex-col items-start gap-2`}>
+                           <Link
                               className="flex items-center gap-3 hover:text-yellow-200"
-                              onClick={() => dispatch(resetDarkMode())}
-                           >
-                              <FaSun />
-                              Light Mode
-                           </button>
-                           : <button
+                              to="/signin">
+                              <FaArrowRightFromBracket />
+                              Masuk
+                           </Link>
+                           <Link
                               className="flex items-center gap-3 hover:text-yellow-200"
-                              onClick={() => dispatch(setDarkMode())}
-                           >
-                              <FaMoon />
-                              Dark Mode
-                           </button>
-                        }
-                        <a
+                              to="/signup">
+                              <FaUser />
+                              Daftar
+                           </Link>
+                        </div>
+                     )}
+
+                     {darkMode
+                        ? <button
                            className="flex items-center gap-3 hover:text-yellow-200"
-                           href="/signin">
-                           <FaArrowRightFromBracket />
-                           Masuk
-                        </a>
-                        <a
+                           onClick={() => dispatch(resetDarkMode())}
+                        >
+                           <FaSun />
+                           Light Mode
+                        </button>
+                        : <button
                            className="flex items-center gap-3 hover:text-yellow-200"
-                           href="/signup">
-                           <FaUser />
-                           Daftar
-                        </a>
-                     </div>
+                           onClick={() => dispatch(setDarkMode())}
+                        >
+                           <FaMoon />
+                           Dark Mode
+                        </button>
+                     }
                   </div>
                </div>
             </div>

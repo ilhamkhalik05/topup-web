@@ -1,4 +1,4 @@
-import RootLayout from "../root-layout";
+import RootLayout from "../layout/root-layout";
 import Container from "../components/container";
 import Banner from "../components/banner";
 import SectionPage from '../components/section-page'

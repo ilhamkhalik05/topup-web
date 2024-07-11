@@ -34,11 +34,16 @@ export default {
           '0%': { maxHeight: '0', opacity: '0' },
           '100%': { maxHeight: '1000px', opacity: '1' },
         },
+        dropdown: {
+          '0%': { opacity: 0, transform: 'scale(0.95)' },
+          '100%': { opacity: 1, transform: 'scale(1)' },
+        },
       },
       animation: {
         slideIn: 'slideIn 0.5s forwards',
         slideOut: 'slideOut 0.5s forwards',
         slideDown: 'slideDown 1s ease-out forwards',
+        dropdown: 'dropdown 0.2s ease-out forwards',
       },
       container: {
         center: true,

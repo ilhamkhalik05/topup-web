@@ -1,6 +1,6 @@
 import { transactions } from "../lib/data/product";
 
-import RootLayout from "../root-layout";
+import RootLayout from "../layout/root-layout";
 import SectionPage from "../components/section-page";
 import Container from "../components/container";
 import { authSideImg } from "../components/assets";

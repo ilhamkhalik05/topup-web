@@ -1,12 +1,12 @@
-import Navbar from "./components/navbar"
-import Footer from "./components/footer"
+import Navbar from "../components/navbar"
+import Footer from "../components/footer"
 
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 
 export default function RootLayout({ children }) {
    const darkMode = useSelector((state) => state.darkMode.value)
- 
+
    useEffect(() => {
       if (darkMode) {
          document.documentElement.classList.add('dark')

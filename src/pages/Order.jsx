@@ -2,7 +2,7 @@ import { useParams } from "react-router"
 import { useState } from "react";
 import { products, payments } from "../lib/data/product"
 
-import RootLayout from "../root-layout"
+import RootLayout from "../layout/root-layout"
 import CardList from '../components/card-list'
 import { PromoModal } from "../components/ui/modal";
 

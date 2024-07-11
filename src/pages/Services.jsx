@@ -1,6 +1,6 @@
 import { products, services } from "../lib/data/product";
 
-import RootLayout from "../root-layout";
+import RootLayout from "../layout/root-layout";
 import Container from "../components/container";
 import SectionPage from "../components/section-page";
 import CardList from "../components/card-list";

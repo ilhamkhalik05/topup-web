@@ -12,19 +12,21 @@ import { Link } from "react-router-dom";
 import SideNav from "./ui/side-navbar";
 import UserAvatar from "./ui/user-avatar";
 
-import { GrServices } from "react-icons/gr";
+import { GrServices, GrTransaction } from "react-icons/gr";
 import { FaHome } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
-import { FiMoon, FiSun } from "react-icons/fi";
-import { FaArrowRightFromBracket, FaRegUser, FaBars } from "react-icons/fa6";
+import { FiLogOut, FiMoon, FiSun } from "react-icons/fi";
+import { FaArrowRightFromBracket, FaRegUser, FaBars, FaGear, FaMoneyBillTransfer } from "react-icons/fa6";
 import { BsCurrencyExchange } from "react-icons/bs";
 import { RxDashboard } from "react-icons/rx";
+import { useState } from "react";
+import { signout } from "../lib/auth/actions";
+import { TbReport } from "react-icons/tb";
 
 export default function Navbar() {
+   const { pathname } = useLocation()
    const darkMode = useSelector((state) => state.darkMode.value);
    const dispatch = useDispatch();
-   const location = useLocation();
-   const { pathname } = location
 
    const links = [
       {
@@ -46,6 +48,21 @@ export default function Navbar() {
          label: "Dashboard",
          path: "/dashboard",
          icon: <RxDashboard />
+      },
+      {
+         label: "Laporan Penjualan",
+         path: "/dashboard/laporan",
+         icon: <TbReport />
+      },
+      {
+         label: "Transaksi",
+         path: "/dashboard/transaksi",
+         icon: <GrTransaction />
+      },
+      {
+         label: "Mutasi",
+         path: "/dashboard/mutasi",
+         icon: <FaMoneyBillTransfer />
       },
    ]
 
@@ -77,26 +94,29 @@ const NavBurgerToggler = ({ dispatch }) => (
 );
 
 const NavStart = ({ pathname, links }) => {
-   const token = getLocalToken();
    const active = "text-primary";
-   const filteredLinks = links.filter(link => link.label !== 'Dashboard');
+   const filteredLinks = links.filter((link) => !link.path.includes('/dashboard'))
 
    const renderLinks = () => {
-      const relevantLinks = token ? links : filteredLinks;
-      return relevantLinks.map((link, index) => (
-         <Link
-            className={`${pathname === link.path ? active : 'hover:text-primary'} font-medium flex items-center gap-2 ease-in-out duration-100`}
-            key={index}
-            to={link.path}>
-            {link.icon}
-            {link.label}
-         </Link>
-      ));
+      return filteredLinks.map((link, index) => {
+         const isPathMatches = pathname === link.path
+         return (
+            <Link
+               className={`${isPathMatches ? active : 'hover:text-primary'} font-medium flex items-center gap-2 ease-in-out duration-100`}
+               key={index}
+               to={link.path}>
+               {link.icon}
+               {link.label}
+            </Link>
+         )
+      });
    };
 
    return (
       <div className="nav-start flex items-center gap-7">
-         <img src={logo} alt="Logo" width={150} />
+         <Link to="/">
+            <img src={logo} alt="Logo" width={150} />
+         </Link>
          <div className={`hidden lg:flex items-center gap-5 border-s-2 border-primary pl-8`}>
             {renderLinks()}
          </div>
@@ -131,12 +151,23 @@ const NavEnd = ({ darkMode, dispatch }) => (
 
 const NavAuth = () => {
    const token = getLocalToken();
+   const [isDashboarMenuShow, setIsDashboardMenuShow] = useState(false);
+
    return (
-      <div className="hidden lg:block">
-         {token ? <UserAvatar /> : <UserUnauthenticatedNav />}
-      </div>
+      <>
+         {token ? (
+            <div className="relative">
+               <UserAvatar onClick={() => setIsDashboardMenuShow(!isDashboarMenuShow)} />
+               <NavDashboardMenu isDashboarMenuShow={isDashboarMenuShow} />
+            </div>
+         ) : (
+            <div className="hidden lg:block">
+               <UserUnauthenticatedNav />
+            </div>
+         )}
+      </>
    );
-}
+};
 
 const UserUnauthenticatedNav = () => {
    return (
@@ -158,3 +189,34 @@ const UserUnauthenticatedNav = () => {
       </div>
    )
 }
+
+const NavDashboardMenu = ({ isDashboarMenuShow }) => {
+   return (
+      <div className={`${isDashboarMenuShow ? 'block' : 'hidden'} absolute right-0 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 animate-dropdown dark:bg-zinc-800 dark:divide-zinc-800`}>
+         <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div>Adam Wirayaudah</div>
+            <div className="font-medium truncate">adamydh@gmail.com</div>
+         </div>
+         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+            <li>
+               <Link to={'/dashboard'} className="flex items-center gap-2 px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white transition-colors duration-300">
+                  <RxDashboard />
+                  Dashboard
+               </Link>
+            </li>
+            <li>
+               <Link to={'/dashboard/profile'} className="flex items-center gap-2 px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white transition-colors duration-300">
+                  <FaGear />
+                  Pengaturan
+               </Link>
+            </li>
+         </ul>
+         <div className="py-2">
+            <button onClick={signout} className="flex items-center gap-2 px-4 py-2 text-sm text-zinc-700 dark:text-red-400 dark:hover:text-red-300 transition-colors duration-300">
+               <FiLogOut />
+               Sign out
+            </button>
+         </div>
+      </div>
+   );
+};

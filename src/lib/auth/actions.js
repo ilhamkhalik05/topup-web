@@ -14,7 +14,12 @@ export const signin = (values) => {
 }
 
 export const signout = () => {
-   localStorage.removeItem('user')
-   localStorage.removeItem('user_session_token')
-   window.location.href = '/'
+   if (confirm('Pengen keluar? Ahhh,')) {
+      localStorage.removeItem('user')
+      localStorage.removeItem('user_session_token')
+      window.location.href = '/'
+      return
+   } else {
+      return
+   }
 }
